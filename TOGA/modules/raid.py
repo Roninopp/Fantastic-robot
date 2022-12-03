@@ -8,18 +8,18 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Upda
 from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.helper_funcs.anonymous import user_admin, AdminPerms
-from SUMI.modules.helper_funcs.chat_status import bot_admin, connection_status, user_admin_no_reply
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMIcallback
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.helper_funcs.anonymous import user_admin, AdminPerms
+from TOGA.modules.helper_funcs.chat_status import bot_admin, connection_status, user_admin_no_reply
+from TOGA.modules.helper_funcs.decorators import TOGAcmd, TOGAcallback
 from .. import LOGGER, updater
 
-import SUMI.modules.sql.welcome_sql as sql
+import TOGA.modules.sql.welcome_sql as sql
 
 j = updater.job_queue
 
-# store job id in a dict to be able to cancel them later
-RUNNING_RAIDS = {}  # {chat_id:job_id, ...}
+
+RUNNING_RAIDS = {}  
 
 
 def get_time(time: str) -> int:
