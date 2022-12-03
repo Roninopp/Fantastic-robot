@@ -1,6 +1,3 @@
-# below code is taken from USERGE-X repo
-# all credits to the respective author (dunno who wrote it will find later n update)
-# i simply copied this code and pasted here for few modules, still i don't know much about this code, so please don't ask me about this 
 
 
 __all__ = ['get_collection']
@@ -8,19 +5,19 @@ __all__ = ['get_collection']
 import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
 from motor.core import AgnosticClient, AgnosticDatabase, AgnosticCollection
-from SUMI import MONGO_DB_URI as DB_URL
+from TOGA import MONGO_DB_URI as DB_URL
 
 print("Connecting to Database ...")
 
 _MGCLIENT: AgnosticClient = AsyncIOMotorClient(DB_URL)
 _RUN = asyncio.get_event_loop().run_until_complete
 
-if "SUGU" in _RUN(_MGCLIENT.list_database_names()):
-    print("SUGU Database Found :) => Now Logging to it...")
+if "TOGA" in _RUN(_MGCLIENT.list_database_names()):
+    print("TOGA Database Found :) => Now Logging to it...")
 else:
-    print("SUGU Database Not Found :( => Creating New Database...")
+    print("ROGA Database Not Found :( => Creating New Database...")
 
-_DATABASE: AgnosticDatabase = _MGCLIENT["SUMI"]
+_DATABASE: AgnosticDatabase = _MGCLIENT["TOGA"]
 
 
 def get_collection(name: str) -> AgnosticCollection:
