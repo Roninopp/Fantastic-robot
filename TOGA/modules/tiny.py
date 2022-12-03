@@ -1,8 +1,8 @@
 import os
 import cv2
 from PIL import Image
-from SUMI.events import register
-from SUMI import telethn as tbot
+from TOGA.events import register
+from TOGA import telethn as tbot
 
 
 @register(pattern="^/tiny ?(.*)")
