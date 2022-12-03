@@ -8,21 +8,21 @@ import importlib
 from functools import partial
 from pyrogram import Client , filters
 from pyrogram.types import Message
-import SUMI.modules.sql.welcome_sql as sql
-from SUMI import (DEV_USERS, LOGGER, OWNER_ID, DRAGONS, DEMONS, TIGERS, BOT_USERNAME,
+import TOGA.modules.sql.welcome_sql as sql
+from TOGA import (DEV_USERS, LOGGER, OWNER_ID, DRAGONS, DEMONS, TIGERS, BOT_USERNAME,
                           WOLVES, sw, dispatcher, EVENT_LOGS, JOIN_LOGGER, pgram)
-from SUMI.modules.helper_funcs.chat_status import (
+from TOGA.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
 )
-from SUMI.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from SUMI.modules.helper_funcs.msg_types import get_welcome_type
-from SUMI.modules.helper_funcs.string_handling import (
+from TOGA.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from TOGA.modules.helper_funcs.msg_types import get_welcome_type
+from TOGA.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
 )
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.sql.global_bans_sql import is_user_gbanned
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.sql.global_bans_sql import is_user_gbanned
 from telegram import (
     ChatPermissions,
     InlineKeyboardButton,
@@ -40,8 +40,8 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
-from SUMI.modules.helper_funcs.misc import paginate_modules
-from SUMI.modules import ALL_MODULES
+from TOGA.modules.helper_funcs.misc import paginate_modules
+from TOGA.modules import ALL_MODULES
 
 VALID_WELCOME_FORMATTERS = [
     "first",
@@ -55,12 +55,12 @@ VALID_WELCOME_FORMATTERS = [
 ]
 
 
-SUMI_RESP = "https://telegra.ph/file/c85d158c6389e4c241ed8.jpg"
-SUMI_DIS_WEL = ""
-SUMI_OWNER_WEL_IMG = ""
-SUMI_WELCOME = ""
-NETWORK_USERNAME = "Anicademia"
-NETWORK_NAME = "Anicade"
+TOGA_RESP = ""
+TOGA_DIS_WEL = ""
+TOGA_OWNER_WEL_IMG = ""
+TOGA_WELCOME = ""
+NETWORK_USERNAME = ""
+NETWORK_NAME = ""
 
 ENUM_FUNC_MAP = {
     sql.Types.TEXT.value: dispatcher.bot.send_message,
@@ -76,12 +76,10 @@ ENUM_FUNC_MAP = {
 VERIFIED_USER_WAITLIST = {}
 
 
-# do not async
 def send(update, message, keyboard, backup_message):
     chat = update.effective_chat
     cleanserv = sql.clean_service(chat.id)
     reply = update.message.message_id
-    # Clean service welcome
     if cleanserv:
         try:
             dispatcher.bot.delete_message(chat.id, update.message.message_id)
@@ -187,7 +185,6 @@ def new_member(update: Update, context: CallbackContext):
 
             reply = update.message.message_id
             cleanserv = sql.clean_service(chat.id)
-            # Clean service welcome
             if cleanserv:
                 try:
                     dispatcher.bot.delete_message(chat.id,
@@ -196,33 +193,29 @@ def new_member(update: Update, context: CallbackContext):
                     pass
                 reply = False
 
-            # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_video(
-                SUMI_OWNER_WEL_IMG, caption= "Behold !!! Owner 🔱 Of ＴＯＧＡ Joined Your Chat.",
+                TOGA_OWNER_WEL_IMG, caption= "Behold !!! Owner 🔱 Of ＴＯＧＡ Joined Your Chat.",
                     reply_to_message_id=reply)
                 welcome_log = (f"{html.escape(chat.title)}\n"
                                f"#USER_JOINED\n"
                                f"Bot Owner just joined the chat")
                 continue
 
-            # Welcome Devs
             elif new_mem.id in DEV_USERS:
                 update.effective_message.reply_photo(
-                SUMI_DIS_WEL, caption= "One Of The Dev Just Joined.",
+                TOGA_DIS_WEL, caption= "One Of The Dev Just Joined.",
                     reply_to_message_id=reply,
                 )
                 continue
 
-            # Welcome Sudos
             elif new_mem.id in DRAGONS:
                 update.effective_message.reply_photo(
-                SUMI_DIS_WEL, caption= "A Dragon Disaster Just Joined!",
+                TOGA_DIS_WEL, caption= "A Dragon Disaster Just Joined!",
                     reply_to_message_id=reply,
                 )
                 continue
 
-            # Welcome Support
             elif new_mem.id in DEMONS:
                 update.effective_message.reply_text(
                 "OwO! Someone with a Demon level disaster just joined!",
@@ -230,20 +223,17 @@ def new_member(update: Update, context: CallbackContext):
                 )
                 continue
 
-            # Welcome Whitelisted
             elif new_mem.id in TIGERS:
                 update.effective_message.reply_text(
                 "Beware A Tiger level disaster just joined!",
                     reply_to_message_id=reply)
                 continue
 
-            # Welcome Tigers
             elif new_mem.id in WOLVES:
                 update.effective_message.reply_text(
                 "Awoo! A wolf level disaster just joined!",
                     reply_to_message_id=reply)
                 continue
-            # Welcome yourself
             elif new_mem.id == bot.id:
                 update.effective_message.reply_photo(
                 SUMI_WELCOME, caption= "Hey {}, I'm {}!\n😩 Tʜᴀɴᴋ Yᴏᴜ Fᴏʀ Aᴅᴅɪɴɢ Mᴇ Tᴏ {}\n"
@@ -274,7 +264,7 @@ def new_member(update: Update, context: CallbackContext):
 
             elif new_mem.id == 5163444566:
                 update.effective_message.reply_photo(
-                SUMI_RESP, caption= "Ohh damn, Legend Arrives\nHow are you sir",
+                TOGA_RESP, caption= "Ohh damn, Legend Arrives\nHow are you sir",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -339,11 +329,9 @@ def new_member(update: Update, context: CallbackContext):
             backup_message = None
             reply = None
 
-        # User exceptions from welcomemutes
         if (is_user_ban_protected(chat, new_mem.id, chat.get_member(new_mem.id))
                 or human_checks):
             should_mute = False
-        # Join welcome: soft mute
         if new_mem.is_bot:
             should_mute = False
 
@@ -491,7 +479,6 @@ def left_member(update: Update, context: CallbackContext):
     if should_goodbye:
         reply = update.message.message_id
         cleanserv = sql.clean_service(chat.id)
-        # Clean service welcome
         if cleanserv:
             try:
                 dispatcher.bot.delete_message(chat.id,
@@ -509,21 +496,17 @@ def left_member(update: Update, context: CallbackContext):
                 if sw_ban:
                     return
 
-            # Dont say goodbyes to gbanned users
             if is_user_gbanned(left_mem.id):
                 return
 
-            # Ignore bot being kicked
             if left_mem.id == bot.id:
                 return
 
-            # Give the owner a special goodbye
             if left_mem.id == OWNER_ID:
                 update.effective_message.reply_text(
-                "Alas! My Master Left...", reply_to_message_id=reply)
+                "Oh Noh! My Master Left...", reply_to_message_id=reply)
                 return
 
-            # Give the devs a special goodbye
             elif left_mem.id in DEV_USERS:
                 update.effective_message.reply_text(
                     "See you later at the @{SUPPORT_CHAT}!",
@@ -538,13 +521,12 @@ def left_member(update: Update, context: CallbackContext):
                 )
                 return
 
-            # if media goodbye, use appropriate function for it
             if goodbye_type != sql.Types.TEXT and goodbye_type != sql.Types.BUTTON_TEXT:
                 ENUM_FUNC_MAP[goodbye_type](chat.id, cust_goodbye)
                 return
 
             first_name = (left_mem.first_name or "PersonWithNoName"
-                         )  # edge case of empty name - occurs for some bugs.
+                         )
             if cust_goodbye:
                 if cust_goodbye == sql.DEFAULT_GOODBYE:
                     cust_goodbye = random.choice(
@@ -598,7 +580,6 @@ def left_member(update: Update, context: CallbackContext):
 def welcome(update: Update, context: CallbackContext):
     args = context.args
     chat = update.effective_chat
-    # if no args, show current replies.
     if not args or args[0].lower() == "noformat":
         noformat = True
         pref, welcome_m, cust_content, welcome_type = sql.get_welc_pref(chat.id)
@@ -1022,19 +1003,6 @@ def welcome_mute_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         WELC_MUTE_HELP_TXT, parse_mode=ParseMode.MARKDOWN)
 
-
-# TODO: get welcome data from group butler snap
-# def __import_data__(chat_id, data):
-#     welcome = data.get('info', {}).get('rules')
-#     welcome = welcome.replace('$username', '{username}')
-#     welcome = welcome.replace('$name', '{fullname}')
-#     welcome = welcome.replace('$id', '{id}')
-#     welcome = welcome.replace('$title', '{chatname}')
-#     welcome = welcome.replace('$surname', '{lastname}')
-#     welcome = welcome.replace('$rules', '{rules}')
-#     sql.set_custom_welcome(chat_id, welcome, sql.Types.TEXT)
-
-
 def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
@@ -1114,9 +1082,7 @@ def help_button(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(0, HELPABLE, "help")))
 
-        # ensure no spinny white circle
         context.bot.answer_callback_query(query.id)
-        # query.message.delete()
 
     except BadRequest:
         pass
