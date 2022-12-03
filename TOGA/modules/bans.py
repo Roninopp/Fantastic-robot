@@ -1,5 +1,3 @@
-
-
 import html
 import random
 
@@ -16,10 +14,10 @@ from telegram.utils.helpers import mention_html
 from typing import Optional, List
 from telegram import TelegramError
 
-import SUMI.modules.sql.users_sql as sql
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.filters import CustomFilters
-from SUMI import (
+import TOGA.modules.sql.users_sql as sql
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.filters import CustomFilters
+from TOGA import (
     DEV_USERS,
     LOGGER,
     OWNER_ID,
@@ -31,7 +29,7 @@ from SUMI import (
     COTB,
     dispatcher,
 )
-from SUMI.modules.helper_funcs.chat_status import (
+from TOGA.modules.helper_funcs.chat_status import (
     user_admin_no_reply,
     bot_admin,
     can_restrict,
@@ -44,9 +42,9 @@ from SUMI.modules.helper_funcs.chat_status import (
     can_delete,
     dev_plus,
 )
-from SUMI.modules.helper_funcs.extraction import extract_user_and_text
-from SUMI.modules.helper_funcs.string_handling import extract_time
-from SUMI.modules.log_channel import gloggable, loggable
+from TOGA.modules.helper_funcs.extraction import extract_user_and_text
+from TOGA.modules.helper_funcs.string_handling import extract_time
+from TOGA.modules.log_channel import gloggable, loggable
 
 
 
@@ -129,7 +127,7 @@ def ban(update: Update, context: CallbackContext) -> str:
             message.delete()
             return log
 
-        # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+       
         reply = (
             f"<code>❕</code><b>Ban Event</b>\n"
             f"<code> </code><b>➢ User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
@@ -156,7 +154,7 @@ def ban(update: Update, context: CallbackContext) -> str:
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
-            # Do not reply
+            
             if silent:
                 return log
             message.reply_text("Banned!", quote=False)
@@ -233,7 +231,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
 
     try:
         chat.ban_member(user_id, until_date=bantime)
-        # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        
 
         reply_msg = (
             f"<code>❕</code><b>Temp Banned</b>\n"
@@ -264,7 +262,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
-            # Do not reply
+            
             message.reply_text(
                 f"Banned! User will be banned for {time_val}.", quote=False
             )
@@ -369,9 +367,9 @@ def punch(update: Update, context: CallbackContext) -> str:
         message.reply_text("I really wish I could punch this user....")
         return log_message
 
-    res = chat.unban_member(user_id)  # unban on current user = kick
+    res = chat.unban_member(user_id)  
     if res:
-        # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        
         bot.sendMessage(
             chat.id,
             f"Go to Hell! {mention_html(member.user.id, html.escape(member.user.first_name))}.",
