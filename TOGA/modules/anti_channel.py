@@ -1,13 +1,13 @@
 from telegram.ext.filters import Filters
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMImsg
+from TOGA.modules.helper_funcs.decorators import TOGAcmd, TOGAmsg
 from telegram import Update, message
 from telegram.ext import CallbackContext
-from SUMI.modules.helper_funcs.anonymous import user_admin, AdminPerms
+from TOGA.modules.helper_funcs.anonymous import user_admin, AdminPerms
 import html
-from SUMI.modules.sql.antichannel_sql import antichannel_status, disable_antichannel, enable_antichannel
+from TOGA.modules.sql.antichannel_sql import antichannel_status, disable_antichannel, enable_antichannel
 
 
-@SUMIcmd(command="antichannel", group=100)
+@TOGAcmd(command="antichannel", group=100)
 @user_admin(AdminPerms.CAN_RESTRICT_MEMBERS)
 def set_antichannel(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -28,7 +28,7 @@ def set_antichannel(update: Update, context: CallbackContext):
         "Antichannel setting is currently {} in {}".format(antichannel_status(chat.id), html.escape(chat.title)))
 
 
-@SUMImsg(Filters.chat_type.groups, group=110)
+@TOGAmsg(Filters.chat_type.groups, group=110)
 def eliminate_channel(update: Update, context: CallbackContext):
     message = update.effective_message
     chat = update.effective_chat
