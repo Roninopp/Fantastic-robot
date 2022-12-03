@@ -4,15 +4,15 @@ import re
 
 from telegram import Message, Chat, Update, User, ChatPermissions
 
-from SUMI import TIGERS, WOLVES, dispatcher
-from SUMI.modules.helper_funcs.chat_status import (
+from TOGA import TIGERS, WOLVES, dispatcher
+from TOGA.modules.helper_funcs.chat_status import (
     bot_admin,
     is_user_admin,
     user_admin,
     user_admin_no_reply,
 )
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.sql import antiflood_sql as sql
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.sql import antiflood_sql as sql
 from telegram.error import BadRequest
 from telegram.ext import (
     CallbackContext,
@@ -23,10 +23,10 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html, escape_markdown
-from SUMI.modules.helper_funcs.string_handling import extract_time
-from SUMI.modules.connection import connected
-from SUMI.modules.helper_funcs.alternate import send_message
-from SUMI.modules.sql.approve_sql import is_approved
+from TOGA.modules.helper_funcs.string_handling import extract_time
+from TOGA.modules.connection import connected
+from TOGA.modules.helper_funcs.alternate import send_message
+from TOGA.modules.sql.approve_sql import is_approved
 
 FLOOD_GROUP = 3
 
@@ -427,7 +427,7 @@ FLOOD_BAN_HANDLER = MessageHandler(
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, filters=Filters.group)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
     "setfloodmode", set_flood_mode, pass_args=True
-)  # , filters=Filters.group)
+) 
 FLOOD_QUERY_HANDLER = CallbackQueryHandler(flood_button, pattern=r"unmute_flooder")
 FLOOD_HANDLER = CommandHandler("flood", flood, filters=Filters.group)
 
