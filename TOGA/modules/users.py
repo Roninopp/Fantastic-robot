@@ -12,11 +12,11 @@ from telegram.ext import (
     CommandHandler,
 )
 
-import SUMI.modules.sql.users_sql as sql
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from SUMI.modules.helper_funcs.chat_status import dev_plus, sudo_plus
-from SUMI.modules.sql.users_sql import get_all_users
+import TOGA.modules.sql.users_sql as sql
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA import DEV_USERS, LOGGER, OWNER_ID, dispatcher
+from TOGA.modules.helper_funcs.chat_status import dev_plus, sudo_plus
+from TOGA.modules.sql.users_sql import get_all_users
 
 
 USERS_GROUP = 4
@@ -169,11 +169,11 @@ def __migrate__(old_chat_id, new_chat_id):
     sql.migrate_chat(old_chat_id, new_chat_id)
 
 BROADCAST_HANDLER = CommandHandler(
-    ["twbroadcastall", "twbroadcastusers", "twbroadcastgroups"], broadcast, run_async=True,
+    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, run_async=True,
 )
 USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, run_async=True)
 CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, run_async=True)
-CHATLIST_HANDLER = CommandHandler("twups", chats, run_async=True)
+CHATLIST_HANDLER = CommandHandler("groups", chats, run_async=True)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
