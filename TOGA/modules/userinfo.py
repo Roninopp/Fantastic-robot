@@ -22,7 +22,7 @@ from telegram.ext.dispatcher import run_async
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_html
     
-from SUMI import (
+from TOGA import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -38,18 +38,18 @@ from SUMI import (
     NETWORK_USERNAME,
     NETWORK_NAME
 )
-from SUMI.__main__ import STATS, TOKEN, USER_INFO
-from SUMI.modules.sql import SESSION
-import SUMI.modules.sql.userinfo_sql as sql
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.sql.global_bans_sql import is_user_gbanned
-from SUMI.modules.redis.afk_redis import is_user_afk, afk_reason
-from SUMI.modules.sql.users_sql import get_user_num_chats
-from SUMI.modules.helper_funcs.chat_status import sudo_plus
-from SUMI.modules.helper_funcs.extraction import extract_user
-from SUMI import telethn
+from TOGA.__main__ import STATS, TOKEN, USER_INFO
+from TOGA.modules.sql import SESSION
+import TOGA.modules.sql.userinfo_sql as sql
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.sql.global_bans_sql import is_user_gbanned
+from TOGA.modules.redis.afk_redis import is_user_afk, afk_reason
+from TOGA.modules.sql.users_sql import get_user_num_chats
+from TOGA.modules.helper_funcs.chat_status import sudo_plus
+from TOGA.modules.helper_funcs.extraction import extract_user
+from TOGA import telethn
 
-SUMI_STATS_PIC = "https://telegra.ph/file/a1f6fc767b7231387d14b.jpg"
+TOGA_STATS_PIC = "https://telegra.ph/file/a1f6fc767b7231387d14b.jpg"
 
 def no_by_per(totalhp, percentage):
     """
@@ -109,24 +109,18 @@ def hpmanager(user):
         try:
             dispatcher.bot.get_user_profile_photos(user.id).photos[0][-1]
         except IndexError:
-            # no profile photo ==> -25% of hp
+            
             new_hp -= no_by_per(total_hp, 25)
-        # if no /setme exist ==> -20% of hp
+        
         if not sql.get_user_me_info(user.id):
             new_hp -= no_by_per(total_hp, 20)
-        # if no bio exsit ==> -10% of hp
+       
         if not sql.get_user_bio(user.id):
             new_hp -= no_by_per(total_hp, 10)
 
         if is_user_afk(user.id):
             afkst = afk_reason(user.id)
-            # if user is afk and no reason then decrease 7%
-            # else if reason exist decrease 5%
             new_hp -= no_by_per(total_hp, 7) if not afkst else no_by_per(total_hp, 5)
-            # fbanned users will have (2*number of fbans) less from max HP
-            # Example: if HP is 100 but user has 5 diff fbans
-            # Available HP is (2*5) = 10% less than Max HP
-            # So.. 10% of 100HP = 90HP
 
     else:
         new_hp = no_by_per(total_hp, 5)
@@ -456,7 +450,7 @@ def stats(update, context):
     status += "*•  Uptime:* " + str(botuptime) + "\n"
     try:
         update.effective_message.reply_photo(
-            SUMI_STATS_PIC,
+            TOGA_STATS_PIC,
             status
             + "\n*𝔗𝔬𝔤𝔞 𝔖𝔱𝔞𝔱𝔦𝔰𝔱𝔦𝔠𝔰*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
@@ -501,7 +495,7 @@ def stats(update, context):
 def stats1(update: Update, context: CallbackContext):
     stats = "🌐 <b>⌈ Current Toga Stats ⌋</b>\n" + "\n".join([mod.__stats__() for mod in STATS])
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
-    update.effective_message.reply_photo(SUMI_STATS_PIC,caption=result, parse_mode=ParseMode.HTML)
+    update.effective_message.reply_photo(TOGA_STATS_PIC,caption=result, parse_mode=ParseMode.HTML)
 
 
 def about_bio(update: Update, context: CallbackContext):
