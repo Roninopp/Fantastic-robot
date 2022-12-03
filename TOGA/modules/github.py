@@ -1,7 +1,7 @@
 import aiohttp
 from pyrogram import filters
-from SUMI import pgram as pbot
-from SUMI.utils.errors import capture_err
+from TOGA import pgram as pbot
+from TOGA.utils.errors import capture_err
 
 
 __mod_name__ = "Github"
