@@ -4,11 +4,11 @@ from telegram import Update
 from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.helper_funcs.decorators import SUMIcmd
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.helper_funcs.decorators import SUMIcmd
 
-import SUMI.modules.sql.logger_sql as sql
-from SUMI.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
+import TOGA.modules.sql.logger_sql as sql
+from TOGA.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
 
 
 @SUMIcmd(command="announce", pass_args=True)
