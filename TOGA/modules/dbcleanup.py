@@ -1,9 +1,9 @@
 from time import sleep
 
-import SUMI.modules.sql.global_bans_sql as gban_sql
-import SUMI.modules.sql.users_sql as user_sql
-from SUMI import DEV_USERS, OWNER_ID, dispatcher
-from SUMI.modules.helper_funcs.chat_status import dev_plus
+import TOGA.modules.sql.global_bans_sql as gban_sql
+import TOGA.modules.sql.users_sql as user_sql
+from TOGA import DEV_USERS, OWNER_ID, dispatcher
+from TOGA.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
@@ -139,7 +139,7 @@ def callback_button(update: Update, context: CallbackContext):
             query.answer("You are not allowed to use this.")
 
 
-DB_CLEANUP_HANDLER = CommandHandler("tdbcleanup", dbcleanup)
+DB_CLEANUP_HANDLER = CommandHandler("dbcleanup", dbcleanup)
 BUTTON_HANDLER = CallbackQueryHandler(callback_button, pattern='db_.*')
 
 dispatcher.add_handler(DB_CLEANUP_HANDLER)
