@@ -6,13 +6,10 @@ from telegram.ext import CallbackContext
 from telegram.chatmemberupdated import ChatMemberUpdated
 from telegram.ext.chatmemberhandler import ChatMemberHandler
 
-from SUMI import dispatcher
-from SUMI.modules.log_channel import loggable
+from TOGA import dispatcher
+from TOGA.modules.log_channel import loggable
 
-import SUMI.modules.sql.logger_sql as sql
-
-# Module to extract and log (optional: send to chat) status changes in chat members using ChatMemberUpdated 
-# https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/chatmemberbot.py
+import TOGA.modules.sql.logger_sql as sql
 
 def extract_status_change(chat_member_update: ChatMemberUpdated):
     try:
@@ -45,8 +42,8 @@ def chatmemberupdates(update: Update, context: CallbackContext) -> Optional[str]
         member_name = update.chat_member.new_chat_member.user.mention_html()
         if oldtitle != newtitle:
 
-            if str(update.chat_member.from_user.id) == str(bot.id): # bot action
-                return '' # we handle these in their respective modules
+            if str(update.chat_member.from_user.id) == str(bot.id): 
+                return '' 
             else:
 
                 if oldtitle is None:
