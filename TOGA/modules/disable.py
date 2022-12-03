@@ -2,10 +2,10 @@ import importlib
 from typing import Union
 
 from future.utils import string_types
-from SUMI import dispatcher
-from SUMI.modules.helper_funcs.handlers import (CMD_STARTERS,
+from TOGA import dispatcher
+from TOGA.modules.helper_funcs.handlers import (CMD_STARTERS,
                                                         SpamChecker)
-from SUMI.modules.helper_funcs.misc import is_module_loaded
+from TOGA.modules.helper_funcs.misc import is_module_loaded
 from telegram import ParseMode, Update
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
                           MessageHandler, RegexHandler)
@@ -13,7 +13,6 @@ from telegram.utils.helpers import escape_markdown
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
-# If module is due to be loaded, then setup all the magical handlers
 if is_module_loaded(FILENAME):
 
     from SUMI.modules.helper_funcs.chat_status import (
