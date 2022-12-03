@@ -12,7 +12,7 @@ import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from SUMI import pgram
+from TOGA import pgram
 
 session = aiohttp.ClientSession()
 progress_callback_data = {}
@@ -20,7 +20,6 @@ progress_callback_data = {}
 
 def format_bytes(size):
     size = int(size)
-    # 2**10 = 1024
     power = 1024
     n = 0
     power_labels = {0: "", 1: "K", 2: "M", 3: "G", 4: "T"}
