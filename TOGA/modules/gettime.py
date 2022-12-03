@@ -2,8 +2,8 @@ import datetime
 from typing import List
 
 import requests
-from SUMI import TIME_API_KEY, dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
+from TOGA import TIME_API_KEY, dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
 
