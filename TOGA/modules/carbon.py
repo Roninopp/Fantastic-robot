@@ -1,7 +1,7 @@
 from pyrogram.types import Message
 from pyrogram import filters
-from SUMI import pgram, aiohttpsession as aiosession
-from SUMI.utils.errors import capture_err
+from TOGA import pgram, aiohttpsession as aiosession
+from TOGA.utils.errors import capture_err
 from asyncio import gather
 from io import BytesIO
 
