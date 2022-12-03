@@ -2,9 +2,9 @@ from datetime import datetime
 from functools import wraps
 
 from telegram.ext import CallbackContext
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMIcallback
-from SUMI.modules.helper_funcs.misc import is_module_loaded
-from SUMI.modules.language import gs
+from TOGA.modules.helper_funcs.decorators import TOGAcmd, TOGAcallback
+from TOGA.modules.helper_funcs.misc import is_module_loaded
+from TOGA.modules.language import gs
 
 from ..modules.helper_funcs.anonymous import user_admin, AdminPerms
 
@@ -20,17 +20,17 @@ if is_module_loaded(FILENAME):
     from telegram.error import BadRequest, Unauthorized
     from telegram.utils.helpers import escape_markdown
 
-    from SUMI import EVENT_LOGS as GBAN_LOGS, LOGGER as log, dispatcher
-    from SUMI.modules.helper_funcs.chat_status import user_admin as u_admin, is_user_admin
-    from SUMI.modules.sql import log_channel_sql as sql
+    from TOGA import EVENT_LOGS as GBAN_LOGS, LOGGER as log, dispatcher
+    from TOGA.modules.helper_funcs.chat_status import user_admin as u_admin, is_user_admin
+    from TOGA.modules.sql import log_channel_sql as sql
 
 
     def loggable(func):
         @wraps(func)
         def log_action(update, context, *args, **kwargs):
             result = func(update, context, *args, **kwargs)
-            chat = update.effective_chat  # type: Optional[Chat]
-            message = update.effective_message  # type: Optional[Message]
+            chat = update.effective_chat  
+            message = update.effective_message  
 
             if result:
                 datetime_fmt = "%H:%M - %d-%m-%Y"
@@ -43,7 +43,7 @@ if is_module_loaded(FILENAME):
                             cid = str(chat.id).replace("-100", '')
                             result += f'\n<b>Link:</b> <a href="https://t.me/c/{cid}/{message.message_id}">click here</a>'
                 except AttributeError:
-                    result += '\n<b>Link:</b> No link for manual actions.' # or just without the whole line
+                    result += '\n<b>Link:</b> No link for manual actions.' 
                 log_chat = sql.get_chat_log_channel(chat.id)
                 if log_chat:
                     send_log(context, log_chat, chat.id, result)
@@ -57,8 +57,8 @@ if is_module_loaded(FILENAME):
         @wraps(func)
         def glog_action(update, context, *args, **kwargs):
             result = func(update, context, *args, **kwargs)
-            chat = update.effective_chat  # type: Optional[Chat]
-            message = update.effective_message  # type: Optional[Message]
+            chat = update.effective_chat  
+            message = update.effective_message  
 
             if result:
                 datetime_fmt = "%H:%M - %d-%m-%Y"
@@ -227,7 +227,7 @@ else:
         return func
 
 
-@SUMIcmd("logsettings")
+@TOGAcmd("logsettings")
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 def log_settings(update: Update, _: CallbackContext):
     chat = update.effective_chat
@@ -253,10 +253,10 @@ def log_settings(update: Update, _: CallbackContext):
     msg.reply_text("Toggle channel log settings", reply_markup=btn)
 
 
-from SUMI.modules.sql import log_channel_sql as sql
+from TOGA.modules.sql import log_channel_sql as sql
 
 
-@SUMIcallback(pattern=r"log_tog_.*")
+@TOGAcallback(pattern=r"log_tog_.*")
 def log_setting_callback(update: Update, context: CallbackContext):
     cb = update.callback_query
     user = cb.from_user
