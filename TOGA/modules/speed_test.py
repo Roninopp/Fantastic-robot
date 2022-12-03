@@ -1,16 +1,16 @@
 import speedtest
-from SUMI import DEV_USERS, dispatcher
-from SUMI.modules.helper_funcs.chat_status import dev_plus
+from TOGA import DEV_USERS, dispatcher
+from TOGA.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext import CallbackContext
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMIcallback
+from TOGA.modules.helper_funcs.decorators import TOGAcmd, TOGAcallback
 
 
 def convert(speed):
     return round(int(speed) / 1048576, 2)
 
 
-@SUMIcmd(command='speedtest')
+@TOGAcmd(command='speedtest')
 @dev_plus
 def speedtestxyz(update: Update, context: CallbackContext):
     buttons = [
@@ -24,7 +24,7 @@ def speedtestxyz(update: Update, context: CallbackContext):
     )
 
 
-@SUMIcallback(pattern="speedtest_.*")
+@TOGAcallback(pattern="speedtest_.*")
 def speedtestxyz_callback(update: Update, context: CallbackContext):
     query = update.callback_query
 
