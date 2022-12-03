@@ -5,17 +5,17 @@ from telegram import ParseMode, Message
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, run_async
 
-import SUMI.modules.sql.notes_sql as sql
-from SUMI import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER
-from SUMI.__main__ import DATA_IMPORT
-from SUMI.modules.helper_funcs.chat_status import user_admin
-from SUMI.modules.helper_funcs.alternate import typing_action
+import TOGA.modules.sql.notes_sql as sql
+from TOGA import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER
+from TOGA.__main__ import DATA_IMPORT
+from TOGA.modules.helper_funcs.chat_status import user_admin
+from TOGA.modules.helper_funcs.alternate import typing_action
 
-import SUMI.modules.sql.rules_sql as rulessql
-import SUMI.modules.sql.blacklist_sql as blacklistsql
-from SUMI.modules.sql import disable_sql as disabledsql
-import SUMI.modules.sql.locks_sql as locksql
-from SUMI.modules.connection import connected
+import TOGA.modules.sql.rules_sql as rulessql
+import TOGA.modules.sql.blacklist_sql as blacklistsql
+from TOGA.modules.sql import disable_sql as disabledsql
+import TOGA.modules.sql.locks_sql as locksql
+from TOGA.modules.connection import connected
 
 
 @run_async
@@ -25,8 +25,6 @@ def import_data(update, context):
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
-    # TODO: allow uploading doc with command, not just as reply
-    # only work with a doc
 
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
@@ -117,8 +115,8 @@ def import_data(update, context):
 @user_admin
 def export_data(update, context):
     chat_data = context.chat_data
-    msg = update.effective_message  # type: Optional[Message]
-    user = update.effective_user  # type: Optional[User]
+    msg = update.effective_message 
+    user = update.effective_user  
     chat_id = update.effective_chat.id
     chat = update.effective_chat
     current_chat_id = update.effective_chat.id
@@ -126,14 +124,14 @@ def export_data(update, context):
     if conn:
         chat = dispatcher.bot.getChat(conn)
         chat_id = conn
-        # chat_name = dispatcher.bot.getChat(conn).title
+   
     else:
         if update.effective_message.chat.type == "private":
             update.effective_message.reply_text("This is a group only command!")
             return ""
         chat = update.effective_chat
         chat_id = update.effective_chat.id
-        # chat_name = update.effective_message.chat.title
+        
 
     jam = time.time()
     new_jam = jam + 10800
@@ -168,7 +166,7 @@ def export_data(update, context):
     # Notes
     for note in note_list:
         count += 1
-        # getnote = sql.get_note(chat_id, note.name)
+       
         namacat += "{}<###splitter###>".format(note.name)
         if note.msgtype == 1:
             tombol = sql.get_buttons(chat_id, note.name)
@@ -248,9 +246,7 @@ def export_data(update, context):
 		export_filters[filters] = content
 	print(export_filters)
 	"""
-    # Welcome (TODO)
-    # welc = welcsql.get_welc_pref(chat_id)
-    # Locked
+	
     curr_locks = locksql.get_locks(chat_id)
     curr_restr = locksql.get_restr(chat_id)
 
@@ -296,9 +292,7 @@ def export_data(update, context):
         locked_restr = {}
 
     locks = {"locks": locked_lock, "restrict": locked_restr}
-    # Warns (TODO)
-    # warns = warnssql.get_warns(chat_id)
-    # Backing up
+   
     backup[chat_id] = {
         "bot": context.bot.id,
         "hashes": {
@@ -349,7 +343,7 @@ def put_chat(chat_id, value, chat_data):
 
 
 def get_chat(chat_id, chat_data):
-    # print(chat_data)
+    
     try:
         value = chat_data[chat_id]["backups"]
         return value
