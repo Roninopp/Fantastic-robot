@@ -1,18 +1,18 @@
 import html
 from typing import Optional
 
-import SUMI.modules.sql.blsticker_sql as sql
-from SUMI import LOGGER, dispatcher
-from SUMI.modules.connection import connected
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.alternate import send_message
-from SUMI.modules.helper_funcs.chat_status import (user_admin,
+import TOGA.modules.sql.blsticker_sql as sql
+from TOGA import LOGGER, dispatcher
+from TOGA.modules.connection import connected
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.alternate import send_message
+from TOGA.modules.helper_funcs.chat_status import (user_admin,
                                                            user_not_admin)
-from SUMI.modules.helper_funcs.misc import split_message
-from SUMI.modules.helper_funcs.string_handling import extract_time
+from TOGA.modules.helper_funcs.misc import split_message
+from TOGA.modules.helper_funcs.string_handling import extract_time
 
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.warns import warn
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.warns import warn
 from telegram import (Chat, Message, ParseMode, Update, User, ChatPermissions)
 from telegram.error import BadRequest
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
@@ -23,9 +23,9 @@ from telegram.utils.helpers import mention_html, mention_markdown
 
 @run_async
 def blackliststicker(update: Update, context: CallbackContext):
-    msg = update.effective_message  # type: Optional[Message]
-    chat = update.effective_chat  # type: Optional[Chat]
-    user = update.effective_user  # type: Optional[User]
+    msg = update.effective_message  
+    chat = update.effective_chat  
+    user = update.effective_user  
     bot, args = context.bot, context.args
     conn = connected(bot, update, chat, user.id, need_admin=False)
     if conn:
@@ -67,9 +67,9 @@ def blackliststicker(update: Update, context: CallbackContext):
 @user_admin
 def add_blackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
-    msg = update.effective_message  # type: Optional[Message]
-    chat = update.effective_chat  # type: Optional[Chat]
-    user = update.effective_user  # type: Optional[User]
+    msg = update.effective_message  
+    chat = update.effective_chat  
+    user = update.effective_user  
     words = msg.text.split(None, 1)
     bot = context.bot
     conn = connected(bot, update, chat, user.id)
@@ -149,9 +149,9 @@ def add_blackliststicker(update: Update, context: CallbackContext):
 @user_admin
 def unblackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
-    msg = update.effective_message  # type: Optional[Message]
-    chat = update.effective_chat  # type: Optional[Chat]
-    user = update.effective_user  # type: Optional[User]
+    msg = update.effective_message  
+    chat = update.effective_chat  
+    user = update.effective_user  
     words = msg.text.split(None, 1)
     bot = context.bot
     conn = connected(bot, update, chat, user.id)
@@ -237,9 +237,9 @@ def unblackliststicker(update: Update, context: CallbackContext):
 @loggable
 @user_admin
 def blacklist_mode(update: Update, context: CallbackContext):
-    chat = update.effective_chat  # type: Optional[Chat]
-    user = update.effective_user  # type: Optional[User]
-    msg = update.effective_message  # type: Optional[Message]
+    chat = update.effective_chat  
+    user = update.effective_user  
+    msg = update.effective_message  
     bot, args = context.bot, context.args
     conn = connected(bot, update, chat, user.id, need_admin=True)
     if conn:
@@ -342,8 +342,8 @@ def blacklist_mode(update: Update, context: CallbackContext):
 @user_not_admin
 def del_blackliststicker(update: Update, context: CallbackContext):
     bot = context.bot
-    chat = update.effective_chat  # type: Optional[Chat]
-    message = update.effective_message  # type: Optional[Message]
+    chat = update.effective_chat  
+    message = update.effective_message  
     user = update.effective_user
     to_match = message.sticker
     if not to_match or not to_match.set_name:
