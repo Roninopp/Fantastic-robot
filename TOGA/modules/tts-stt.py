@@ -7,9 +7,9 @@ import json
 from telegram import ChatAction
 from telegram.ext import run_async
 
-from SUMI import dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.alternate import typing_action, send_action
+from TOGA import dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.alternate import typing_action, send_action
 
 @send_action(ChatAction.RECORD_AUDIO)
 def gtts(update, context):
@@ -34,7 +34,7 @@ def gtts(update, context):
             os.remove("k.mp3")
 
 
-# Open API key
+
 API_KEY = "6ae0c3a0-afdc-4532-a810-82ded0054236"
 URL = "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText"
 
