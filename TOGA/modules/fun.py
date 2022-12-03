@@ -2,24 +2,22 @@ import html
 import random
 import time
 
-from pyjokes import get_joke  #thanks to @ishikki_akabane who did nothing and just copypasted this joke feature
-from SUMI.events import register
-import SUMI.modules.fun_strings as fun_strings
-from SUMI import dispatcher, COTB
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.chat_status import is_user_admin
-from SUMI.modules.helper_funcs.extraction import extract_user
+from pyjokes import get_joke  
+from TOGA.events import register
+import TOGA.modules.fun_strings as fun_strings
+from TOGA import dispatcher, COTB
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.chat_status import is_user_admin
+from TOGA.modules.helper_funcs.extraction import extract_user
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, ParseMode, Update)
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, run_async
 
 GIF_ID = "CgACAgQAAxkBAAILHWBPN8dL8NvxZ9tUfr3_4SdPGqgjAAJeAgACQQrNUlM24z1ISCsTHgQ"
 
-#----------@damatte
 @register(pattern="^/joke ?(.*)")
 async def joke(event):
     await event.reply(get_joke())
-#--------------------------
 
 @run_async
 def runs(update: Update, context: CallbackContext):
@@ -166,7 +164,7 @@ def pat(update: Update, context: CallbackContext):
 def roll(update: Update, context: CallbackContext):
     update.message.reply_text(random.choice(range(1, 7)))
 
-def flirt(update: Update, context: CallbackContext):    #This feature's credit goes to @damatte
+def flirt(update: Update, context: CallbackContext):    
     args = context.args
     update.effective_message.reply_text(random.choice(fun_strings.FLIRT))
 
@@ -193,13 +191,9 @@ def toss(update: Update, context: CallbackContext):
 def cosplay(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(random.choice(fun_strings.COSPLAY))
 
-R_IMG = ""  #DONT REMOVE THIS CREDITS
-TEXT2 = """*‣ REPO OWNER:*
-• [` 𝙸𝚉𝚄𝚈𝙰 ⟅](t.me/izuya) (🐈‍⬛)
-┈─╌┈─╌┈─╌┈─╌
-My Source Codes Are Now Public,🔥
-Visit @BotsAtelier if you face any issue related to the bot or for any kind of help
-**Click The Button Below To Get My Repo**""" #DONT REMOVE THIS CREDITS
+R_IMG = ""  
+TEXT2 = """
+""" 
 
 @run_async
 def repo(update: Update, context: CallbackContext):
@@ -209,8 +203,8 @@ def repo(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
             [
                 [
-                InlineKeyboardButton(text="Source CODE", url="https://unsplash.com/photos/JBHN4EeWysE"),
-                InlineKeyboardButton(text="DEVELOPER", url="https://t.me/izuya")
+                InlineKeyboardButton(text="Source CODE", url=""),
+                InlineKeyboardButton(text="DEVELOPER", url="https://t.me/PervertSenpai")
                 ]
             ]
         )
