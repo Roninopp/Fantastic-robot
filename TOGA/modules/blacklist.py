@@ -6,18 +6,18 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-import SUMI.modules.sql.blacklist_sql as sql
-from SUMI import dispatcher, LOGGER
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from SUMI.modules.helper_funcs.extraction import extract_text
-from SUMI.modules.helper_funcs.misc import split_message
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.warns import warn
-from SUMI.modules.helper_funcs.string_handling import extract_time
-from SUMI.modules.connection import connected
+import TOGA.modules.sql.blacklist_sql as sql
+from TOGA import dispatcher, LOGGER
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from TOGA.modules.helper_funcs.extraction import extract_text
+from TOGA.modules.helper_funcs.misc import split_message
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.warns import warn
+from TOGA.modules.helper_funcs.string_handling import extract_time
+from TOGA.modules.connection import connected
 
-from SUMI.modules.helper_funcs.alternate import send_message, typing_action
+from TOGA.modules.helper_funcs.alternate import send_message, typing_action
 
 BLACKLIST_GROUP = 11
 
@@ -52,8 +52,6 @@ def blacklist(update, context):
         for trigger in all_blacklisted:
             filter_list += " - <code>{}</code>\n".format(html.escape(trigger))
 
-    # for trigger in all_blacklisted:
-    #     filter_list += " - <code>{}</code>\n".format(html.escape(trigger))
 
     split_text = split_message(filter_list)
     for text in split_text:
