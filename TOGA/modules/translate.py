@@ -1,10 +1,8 @@
-
-#from google_trans_new import LANGUAGES, google_translator
 from telegram import  Update, ParseMode 
 from telegram.ext import run_async ,CallbackContext
 from gpytranslate import SyncTranslator
-from SUMI import dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
+from TOGA import dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
 trans = SyncTranslator()
  
 def totranslate(update: Update, context: CallbackContext) -> None:
