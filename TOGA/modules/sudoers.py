@@ -7,14 +7,14 @@ import time
 import psutil
 from pyrogram import filters
 
-from SUMI import (StartTime, DEV_USERS, BOT_NAME, pgram)
-import SUMI.utils.formatter as formatter
-import SUMI.modules.sql.users_sql as sql
+from TOGA import (StartTime, DEV_USERS, BOT_NAME, pgram)
+import TOGA.utils.formatter as formatter
+import TOGA.modules.sql.users_sql as sql
 
 
 
 
-# Stats Module
+
 
 async def bot_sys_stats():
     bot_uptime = int(time.time() - StartTime)
