@@ -1,5 +1,5 @@
-from SUMI.events import register
-from SUMI import telethn as tbot
+from TOGA.events import register
+from TOGA import telethn as tbot
 TMP_DOWNLOAD_DIRECTORY = "./"
 from telethon import events
 import os
