@@ -7,8 +7,8 @@ import time
 import uuid
 from io import BytesIO
 
-import SUMI.modules.sql.feds_sql as sql
-from SUMI import (
+import TOGA.modules.sql.feds_sql as sql
+from TOGA import (
     EVENT_LOGS,
     LOGGER,
     SUPPORT_CHAT,
@@ -18,15 +18,15 @@ from SUMI import (
     WOLVES,
     dispatcher,
 )
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.alternate import send_message
-from SUMI.modules.helper_funcs.chat_status import is_user_admin
-from SUMI.modules.helper_funcs.extraction import (
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.alternate import send_message
+from TOGA.modules.helper_funcs.chat_status import is_user_admin
+from TOGA.modules.helper_funcs.extraction import (
     extract_unt_fedban,
     extract_user,
     extract_user_fban,
 )
-from SUMI.modules.helper_funcs.string_handling import markdown_parser
+from TOGA.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -43,16 +43,6 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html, mention_markdown
 from SUMI.modules.language import gs
-
-# Hello bot owner, I spended for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
-# Federation by MrYacha 2018-2019
-# Federation rework by Mizukito Akito 2019
-# Federation update v2 by Ayra Hikari 2019
-# Time spended on feds = 10h by #MrYacha
-# Time spended on reworking on the whole feds = 22+ hours by @peaktogoo
-# Time spended on updating version to v2 = 26+ hours by @AyraHikari
-# Total spended for making this features is 68+ hours
-# LOGGER.info("Original federation module by MrYacha, reworked by Mizukito Akito (@peaktogoo) on Telegram.")
 
 FBAN_ERRORS = {
     "User is an administrator of the chat",
@@ -102,10 +92,6 @@ def new_fed(update: Update, context: CallbackContext):
         fed_id = str(uuid.uuid4())
         fed_name = fednam
         LOGGER.info(fed_id)
-
-        # Currently only for creator
-        # if fednam == 'Team Nusantara Disciplinary Circle':
-        # fed_id = "TeamNusantaraDevs"
 
         x = sql.new_fed(user.id, fed_name, fed_id)
         if not x:
@@ -660,12 +646,6 @@ def fed_ban(update: Update, context: CallbackContext):
 
     if fban:
         fed_name = info["fname"]
-        # https://t.me/OnePunchSupport/41606 // https://t.me/OnePunchSupport/41619
-        # starting = "The reason fban is replaced for {} in the Federation <b>{}</b>.".format(user_target, fed_name)
-        # send_message(update.effective_message, starting, parse_mode=ParseMode.HTML)
-
-        # if reason == "":
-        #    reason = "No reason given."
 
         temp = sql.un_fban_user(fed_id, fban_user_id)
         if not temp:
@@ -687,7 +667,7 @@ def fed_ban(update: Update, context: CallbackContext):
             return
 
         fed_chats = sql.all_fed_chats(fed_id)
-        # Will send to current chat
+        
         bot.send_message(
             chat.id,
             "<b>FedBan reason updated</b>"
@@ -704,7 +684,7 @@ def fed_ban(update: Update, context: CallbackContext):
             ),
             parse_mode="HTML",
         )
-        # Send message to owner if fednotif is enabled
+        
         if getfednotif:
             bot.send_message(
                 info["owner"],
@@ -722,7 +702,7 @@ def fed_ban(update: Update, context: CallbackContext):
                 ),
                 parse_mode="HTML",
             )
-        # If fedlog is set, then send message, except fedlog is current chat
+        
         get_fedlog = sql.get_fed_log(fed_id)
         if get_fedlog:
             if int(get_fedlog) != int(chat.id):
@@ -744,7 +724,7 @@ def fed_ban(update: Update, context: CallbackContext):
                 )
         for fedschat in fed_chats:
             try:
-                # Do not spam all fed chats
+                
                 """
 				bot.send_message(chat, "<b>FedBan reason updated</b>" \
 							 "\n<b>Federation:</b> {}" \
@@ -775,7 +755,7 @@ def fed_ban(update: Update, context: CallbackContext):
                     )
             except TelegramError:
                 pass
-        # Also do not spam all fed admins
+        
         """
 		send_to_list(bot, FEDADMIN,
 				 "<b>FedBan reason updated</b>" \
@@ -820,17 +800,10 @@ def fed_ban(update: Update, context: CallbackContext):
                             )
                     except TelegramError:
                         pass
-        # send_message(update.effective_message, "Fedban Reason has been updated.")
+        
         return
 
     fed_name = info["fname"]
-
-    # starting = "Starting a federation ban for {} in the Federation <b>{}</b>.".format(
-    #    user_target, fed_name)
-    # update.effective_message.reply_text(starting, parse_mode=ParseMode.HTML)
-
-    # if reason == "":
-    #    reason = "No reason given."
 
     x = sql.fban_user(
         fed_id,
@@ -848,7 +821,7 @@ def fed_ban(update: Update, context: CallbackContext):
         return
 
     fed_chats = sql.all_fed_chats(fed_id)
-    # Will send to current chat
+    
     bot.send_message(
         chat.id,
         "<b>New FedBan</b>"
@@ -865,7 +838,7 @@ def fed_ban(update: Update, context: CallbackContext):
         ),
         parse_mode="HTML",
     )
-    # Send message to owner if fednotif is enabled
+    
     if getfednotif:
         bot.send_message(
             info["owner"],
@@ -883,7 +856,7 @@ def fed_ban(update: Update, context: CallbackContext):
             ),
             parse_mode="HTML",
         )
-    # If fedlog is set, then send message, except fedlog is current chat
+    
     get_fedlog = sql.get_fed_log(fed_id)
     if get_fedlog:
         if int(get_fedlog) != int(chat.id):
@@ -907,7 +880,7 @@ def fed_ban(update: Update, context: CallbackContext):
     for fedschat in fed_chats:
         chats_in_fed += 1
         try:
-            # Do not spamming all fed chats
+            
             """
 			bot.send_message(chat, "<b>FedBan reason updated</b>" \
 							"\n<b>Federation:</b> {}" \
@@ -929,7 +902,7 @@ def fed_ban(update: Update, context: CallbackContext):
         except TelegramError:
             pass
 
-        # Also do not spamming all fed admins
+        
         """
 		send_to_list(bot, FEDADMIN,
 				 "<b>FedBan reason updated</b>" \
@@ -941,7 +914,7 @@ def fed_ban(update: Update, context: CallbackContext):
 							html=True)
 		"""
 
-        # Fban for fed subscriber
+        
         subscriber = list(sql.get_subscriber(fed_id))
         if len(subscriber) != 0:
             for fedsid in subscriber:
@@ -974,11 +947,6 @@ def fed_ban(update: Update, context: CallbackContext):
                             )
                     except TelegramError:
                         pass
-    # if chats_in_fed == 0:
-    #    send_message(update.effective_message, "Fedban affected 0 chats. ")
-    # elif chats_in_fed > 0:
-    #    send_message(update.effective_message,
-    #                 "Fedban affected {} chats. ".format(chats_in_fed))
 
 
 def unfban(update: Update, context: CallbackContext):
@@ -1050,10 +1018,10 @@ def unfban(update: Update, context: CallbackContext):
 
     banner = update.effective_user
 
-    # message.reply_text("I'll give {} another chance in this federation".format(user_chat.first_name))
+    
 
     chat_list = sql.all_fed_chats(fed_id)
-    # Will send to current chat
+    
     bot.send_message(
         chat.id,
         "<b>Un-FedBan</b>"
@@ -1068,7 +1036,7 @@ def unfban(update: Update, context: CallbackContext):
         ),
         parse_mode="HTML",
     )
-    # Send message to owner if fednotif is enabled
+    
     if getfednotif:
         bot.send_message(
             info["owner"],
@@ -1084,7 +1052,7 @@ def unfban(update: Update, context: CallbackContext):
             ),
             parse_mode="HTML",
         )
-    # If fedlog is set, then send message, except fedlog is current chat
+    
     get_fedlog = sql.get_fed_log(fed_id)
     if get_fedlog:
         if int(get_fedlog) != int(chat.id):
@@ -1109,7 +1077,7 @@ def unfban(update: Update, context: CallbackContext):
             member = bot.get_chat_member(fedchats, user_id)
             if member.status == "kicked":
                 bot.unban_chat_member(fedchats, user_id)
-            # Do not spamming all fed chats
+            
             """
 			bot.send_message(chat, "<b>Un-FedBan</b>" \
 						 "\n<b>Federation:</b> {}" \
@@ -1140,7 +1108,7 @@ def unfban(update: Update, context: CallbackContext):
     except:
         pass
 
-    # UnFban for fed subscriber
+    
     subscriber = list(sql.get_subscriber(fed_id))
     if len(subscriber) != 0:
         for fedsid in subscriber:
@@ -1228,10 +1196,10 @@ def set_frules(update: Update, context: CallbackContext):
     if len(args) >= 1:
         msg = update.effective_message
         raw_text = msg.text
-        args = raw_text.split(None, 1)  # use python's maxsplit to separate cmd and args
+        args = raw_text.split(None, 1)  
         if len(args) == 2:
             txt = args[1]
-            offset = len(txt) - len(raw_text)  # set correct offset relative to command
+            offset = len(txt) - len(raw_text)  
             markdown_rules = markdown_parser(
                 txt,
                 entities=msg.parse_entities(),
@@ -1306,9 +1274,9 @@ def fed_broadcast(update: Update, context: CallbackContext):
             return
         # Parsing md
         raw_text = msg.text
-        args = raw_text.split(None, 1)  # use python's maxsplit to separate cmd and args
+        args = raw_text.split(None, 1)  
         txt = args[1]
-        offset = len(txt) - len(raw_text)  # set correct offset relative to command
+        offset = len(txt) - len(raw_text)  
         text_parser = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
         text = text_parser
         try:
@@ -1826,8 +1794,6 @@ def fed_import_bans(update: Update, context: CallbackContext):
                     multi_import_username.append(import_username)
                     multi_import_reason.append(import_reason)
                     success += 1
-                    # t = ThreadWithReturnValue(target=sql.fban_user, args=(fed_id, str(import_userid), import_firstname, import_lastname, import_username, import_reason,))
-                    # t.start()
                 sql.multi_fban_user(
                     multi_fed_id,
                     multi_import_userid,
@@ -2439,7 +2405,7 @@ dispatcher.add_handler(FED_ADMIN_HANDLER)
 dispatcher.add_handler(FED_USERBAN_HANDLER)
 dispatcher.add_handler(FED_NOTIF_HANDLER)
 dispatcher.add_handler(FED_CHATLIST_HANDLER)
-# dispatcher.add_handler(FED_IMPORTBAN_HANDLER)
+
 dispatcher.add_handler(FEDSTAT_USER)
 dispatcher.add_handler(SET_FED_LOG)
 dispatcher.add_handler(UNSET_FED_LOG)
