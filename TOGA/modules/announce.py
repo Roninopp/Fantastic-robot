@@ -5,7 +5,7 @@ from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
 from TOGA.modules.log_channel import loggable
-from TOGA.modules.helper_funcs.decorators import SUMIcmd
+from TOGA.modules.helper_funcs.decorators import TOGAcmd
 
 import TOGA.modules.sql.logger_sql as sql
 from TOGA.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
