@@ -2,13 +2,13 @@ import re, ast, random
 from io import BytesIO
 from typing import Optional
 
-import SUMI.modules.sql.notes_sql as sql
-from SUMI import LOGGER, dispatcher, DRAGONS
-from SUMI.modules.helper_funcs.chat_status import connection_status
-from SUMI.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from SUMI.modules.helper_funcs.msg_types import get_note_type
-from SUMI.modules.helper_funcs.handlers import MessageHandlerChecker
-from SUMI.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
+import TOGA.modules.sql.notes_sql as sql
+from TOGA import LOGGER, dispatcher, DRAGONS
+from TOGA.modules.helper_funcs.chat_status import connection_status
+from TOGA.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from TOGA.modules.helper_funcs.msg_types import get_note_type
+from TOGA.modules.helper_funcs.handlers import MessageHandlerChecker
+from TOGA.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
 from telegram import (
     MAX_MESSAGE_LENGTH,
     InlineKeyboardMarkup,
@@ -24,7 +24,7 @@ from telegram.ext import (
     Filters,
 )
 
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMImsg, SUMIcallback
+from TOGA.modules.helper_funcs.decorators import TOGAcmd, TOGAmsg, TOGAcallback
 
 from ..modules.helper_funcs.anonymous import user_admin, AdminPerms
 
@@ -51,19 +51,19 @@ ENUM_FUNC_MAP = {
 }
 
 
-# Do not async
+
 def get(update, context, notename, show_none=True, no_format=False):
-    # sourcery no-metrics
+    
     bot = context.bot
     chat_id = update.effective_message.chat.id
     note_chat_id = update.effective_chat.id
     note = sql.get_note(note_chat_id, notename)
-    message = update.effective_message  # type: Optional[Message]
+    message = update.effective_message  
 
     if note:
         if MessageHandlerChecker.check_user(update.effective_user.id):
             return
-        # If we're replying to a message, reply to that message (unless it's an error)
+        
         if message.reply_to_message:
             reply_id = message.reply_to_message.message_id
         else:
@@ -211,7 +211,7 @@ def get(update, context, notename, show_none=True, no_format=False):
         message.reply_text("This note doesn't exist")
 
 
-@SUMIcmd(command="get")
+@TOGAcmd(command="get")
 @connection_status
 def cmd_get(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -224,7 +224,7 @@ def cmd_get(update: Update, context: CallbackContext):
 
 
 
-@SUMImsg((Filters.regex(r"^#[^\s]+")), group=-14)
+@TOGAmsg((Filters.regex(r"^#[^\s]+")), group=-14)
 @connection_status
 def hash_get(update: Update, context: CallbackContext):
     message = update.effective_message.text
@@ -234,7 +234,7 @@ def hash_get(update: Update, context: CallbackContext):
 
 
 
-@SUMImsg((Filters.regex(r"^/\d+$")), group=-16)
+@TOGAmsg((Filters.regex(r"^/\d+$")), group=-16)
 @connection_status
 def slash_get(update: Update, context: CallbackContext):
     message, chat_id = update.effective_message.text, update.effective_chat.id
@@ -248,7 +248,7 @@ def slash_get(update: Update, context: CallbackContext):
     except IndexError:
         update.effective_message.reply_text("Wrong Note ID 😾")
 
-@SUMIcmd(command='save')
+@TOGAcmd(command='save')
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @connection_status
 def save(update: Update, context: CallbackContext):
@@ -290,7 +290,7 @@ def save(update: Update, context: CallbackContext):
             )
         return
 
-@SUMIcmd(command='clear')
+@TOGAcmd(command='clear')
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @connection_status
 def clear(update: Update, context: CallbackContext):
@@ -307,7 +307,7 @@ def clear(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Provide a notename.")
 
 
-@SUMIcmd(command='removeallnotes')
+@TOGAcmd(command='removeallnotes')
 def clearall(update: Update, context: CallbackContext):
     chat = update.effective_chat
     user = update.effective_user
@@ -334,7 +334,7 @@ def clearall(update: Update, context: CallbackContext):
         )
 
 
-@SUMIcallback(pattern=r"notes_.*")
+@TOGAcallback(pattern=r"notes_.*")
 def clearall_btn(update: Update, context: CallbackContext):
     query = update.callback_query
     chat = update.effective_chat
@@ -366,7 +366,7 @@ def clearall_btn(update: Update, context: CallbackContext):
             query.answer("You need to be admin to do this.")
 
 
-@SUMIcmd(command=["notes", "saved"])
+@TOGAcmd(command=["notes", "saved"])
 @connection_status
 def list_notes(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
