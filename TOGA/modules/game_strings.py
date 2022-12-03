@@ -1,4 +1,3 @@
-#These strings are specifically for Games Module.
 
 WYR_STRINGS = (
 	"Would you rather 🔴 go into the past and meet your ancestors or 🔵 go into the future and meet your great-great grandchildren?",
