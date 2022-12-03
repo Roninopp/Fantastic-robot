@@ -3,10 +3,9 @@ from datetime import datetime
 
 from pyrogram import filters
 
-from SUMI import pbot
-from KACCHAN.couples import get_couple, save_couple
+from TOGA import pbot
+from KACCHAN.kac import get_couple, save_couple
 
-# Date and time
 def dt():
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M")
