@@ -1,12 +1,10 @@
 from random import randint
 
 import requests as r
-from SUMI import SUPPORT_CHAT, WALL_API, dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
+from TOGA import SUPPORT_CHAT, WALL_API, dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext, run_async
-
-# Wallpapers module by @TheRealPhoenix using wall.alphacoders.com
 
 
 @run_async
