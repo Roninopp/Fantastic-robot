@@ -5,8 +5,8 @@ from telethon import events
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, run_async
 
-from SUMI import telethn, dispatcher
-from SUMI.modules.helper_funcs.chat_status import dev_plus
+from TOGA import telethn, dispatcher
+from TOGA.modules.helper_funcs.chat_status import dev_plus
 
 DEBUG_MODE = False
 
