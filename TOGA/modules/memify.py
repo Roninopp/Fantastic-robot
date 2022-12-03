@@ -4,16 +4,16 @@ import textwrap
 
 import os
 
-from SUMI.events import register
+from TOGA.events import register
 
-from SUMI import (
+from TOGA import (
     LOGGER,
     TEMP_DOWNLOAD_DIRECTORY
     )
 
 
 
-from SUMI import telethn as bot 
+from TOGA import telethn as bot 
 
 
 @register(pattern="^/mmf ?(.*)")
@@ -73,7 +73,7 @@ async def drawText(image_path, text):
 
     else:
 
-        fnt = "./SUMI/resources/MutantAcademyStyle.ttf"
+        fnt = "./TOGA/resources/default.ttf"
 
     m_font = ImageFont.truetype(fnt, int((83 / 650) * i_width))
 
