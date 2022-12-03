@@ -4,55 +4,47 @@ from typing import List
 from telegram import Update
 from telegram.ext import run_async, CallbackContext
 
-from SUMI import dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.chat_status import user_admin
+from TOGA import dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.chat_status import user_admin
 
-# sleep how many times after each edit in 'love'
 EDIT_SLEEP = 1
-# edit how many times in 'love'
+
 EDIT_TIMES = 10
 
 
-# sleep how many times after each edit in 'bombs'
 EDIT_SLEEP = 1
-# edit how many times in 'bombs'
+
 EDIT_TIMES = 9
 
 
-# sleep how many times after each edit in 'hack'
 EDIT_SLEEP = 1
-# edit how many times in 'hack'
+
 EDIT_TIMES = 10
 
 
-# sleep how many times after each edit in 'earthanimation'
 EDIT_SLEEP = 1
-# edit how many times in 'earthanimation'
+
 EDIT_TIMES = 18
 
 
-# sleep how many times after each edit in 'moonanimation'
 EDIT_SLEEP = 1
-# edit how many times in 'moonanimation'
+
 EDIT_TIMES = 32
 
 
-# sleep how many times after each edit in 'clockanimation'
 EDIT_SLEEP = 1
-# edit how many times in 'clockanimation'
+
 EDIT_TIMES = 11
 
 
-# sleep how many times after each edit in 'blockanimation'
 EDIT_SLEEP = 1
-# edit how many times in 'blockanimation'
+
 EDIT_TIMES = 18
 
 
-# sleep how many times after each edit in 'kill'
 EDIT_SLEEP = 1
-# edit how many times in 'kill'
+
 EDIT_TIMES = 12
 
 
