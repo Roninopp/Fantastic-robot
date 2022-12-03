@@ -1,7 +1,7 @@
 import random
 
-from SUMI import dispatcher
-from SUMI.modules.disable import DisableAbleCommandHandler
+from TOGA import dispatcher
+from TOGA.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext, run_async
 
