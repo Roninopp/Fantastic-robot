@@ -11,7 +11,7 @@ import TOGA.modules.sql.logger_sql as sql
 from TOGA.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
 
 
-@SUMIcmd(command="announce", pass_args=True)
+@TOGAcmd(command="announce", pass_args=True)
 @u_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
 def announcestat(update: Update, context: CallbackContext) -> str:
