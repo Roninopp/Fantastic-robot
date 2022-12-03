@@ -1,14 +1,10 @@
-## Made By @Yash-Sharma-1807
-## telegram.dog/YASH_SHARMA_1807?start=papa
-
-
 import os 
 import re
 import base64
 import random
 from telethon.tl import types 
 from telethon.utils import get_display_name, get_peer_id
-from SUMI.utils.tools2 import async_searcher, check_filename, json_parser
+from TOGA.utils.tools2 import async_searcher, check_filename, json_parser
 from sqlalchemy import Boolean, Column 
 
 try:
