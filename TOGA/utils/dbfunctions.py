@@ -2,12 +2,8 @@ import codecs
 import pickle
 from typing import Dict, List, Union
 
-from SUMI.mongo import db
+from TOGA.mongo import db
 
-# SOME THINGS ARE FUCKED UP HERE, LIKE TOGGLEABLES HAVE THEIR OWN COLLECTION
-# (SHOULD FIX IT WITH SOMETHING LIKE TOGGLEDB), MOST OF THE CODE IS BAD AF
-# AND NEEDS TO BE REWRITTEN, BUT I WON'T, AS IT WILL TAKE
-# TOO MUCH TIME AND WILL BE BAD FOR ALREADY STORED DATA
 
 
 notesdb = db.notes
