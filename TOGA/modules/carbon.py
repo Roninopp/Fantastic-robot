@@ -17,12 +17,12 @@ async def make_carbon(code):
 @pgram.on_message(filters.command("carbon"))
 async def carbon_func(_, message):
     if not message.reply_to_message:
-        return await message.reply_text("ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴄᴀʀʙᴏɴ.")
+        return await message.reply_text("Reply to A Text To Generate Carbon.")
     if not message.reply_to_message.text:
-        return await message.reply_text("ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ᴄᴀʀʙᴏɴ.")
-    m = await message.reply_text(" ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴀʀʙᴏɴ...")
+        return await message.reply_text("Reply to A Text To Generate Carbon.")
+    m = await message.reply_text(" Generating Carbon...")
     carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("ᴜᴩʟᴏᴀᴅɪɴɢ ɢᴇɴᴇʀᴀᴛᴇᴅ ᴄᴀʀʙᴏɴ...")
+    await m.edit("Uploading Generated Carbon...")
     await pgram.send_photo(message.chat.id, carbon)
     await m.delete()
     carbon.close()
