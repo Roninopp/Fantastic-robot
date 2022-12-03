@@ -13,23 +13,23 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from SUMI import DRAGONS, LOGGER, dispatcher
-from SUMI.modules.connection import connected
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.alternate import send_message, typing_action
-from SUMI.modules.helper_funcs.chat_status import user_admin
-from SUMI.modules.helper_funcs.extraction import extract_text
-from SUMI.modules.helper_funcs.filters import CustomFilters
-from SUMI.modules.helper_funcs.handlers import MessageHandlerChecker
-from SUMI.modules.helper_funcs.misc import build_keyboard_parser
-from SUMI.modules.helper_funcs.msg_types import get_filter_type
-from SUMI.modules.helper_funcs.string_handling import (
+from TOGA import DRAGONS, LOGGER, dispatcher
+from TOGA.modules.connection import connected
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.alternate import send_message, typing_action
+from TOGA.modules.helper_funcs.chat_status import user_admin
+from TOGA.modules.helper_funcs.extraction import extract_text
+from TOGA.modules.helper_funcs.filters import CustomFilters
+from TOGA.modules.helper_funcs.handlers import MessageHandlerChecker
+from TOGA.modules.helper_funcs.misc import build_keyboard_parser
+from TOGA.modules.helper_funcs.msg_types import get_filter_type
+from TOGA.modules.helper_funcs.string_handling import (
     button_markdown_parser,
     escape_invalid_curly_brackets,
     markdown_to_html,
     split_quotes,
 )
-from SUMI.modules.sql import cust_filters_sql as sql
+from TOGA.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
 
@@ -133,11 +133,9 @@ def filters(update, context):
         extracted = split_quotes(args[1])
         if len(extracted) < 1:
             return
-        # set trigger -> lower, so as to avoid adding duplicate filters with different cases
+        
         keyword = extracted[0].lower()
 
-    # Add the filter
-    # Note: perhaps handlers can be removed somehow using sql.get_chat_filters
     for handler in dispatcher.handlers.get(HANDLER_GROUP, []):
         if handler.filters == (keyword, chat_id):
             dispatcher.remove_handler(handler, HANDLER_GROUP)
@@ -167,7 +165,7 @@ def filters(update, context):
             text_to_parsing = ""
         offset = len(
             text_to_parsing
-        )  # set correct offset relative to command + notename
+        )  
         text, buttons = button_markdown_parser(
             text_to_parsing, entities=msg.parse_entities(), offset=offset
         )
@@ -189,7 +187,7 @@ def filters(update, context):
             text_to_parsing = ""
         offset = len(
             text_to_parsing
-        )  # set correct offset relative to command + notename
+        )  
         text, buttons = button_markdown_parser(
             text_to_parsing, entities=msg.parse_entities(), offset=offset
         )
@@ -206,8 +204,6 @@ def filters(update, context):
         return
 
     add = addnew_filter(update, chat_id, keyword, text, file_type, file_id, buttons)
-    # This is an old method
-    # sql.add_filter(chat_id, keyword, content, is_sticker, is_document, is_image, is_audio, is_voice, is_video, buttons)
 
     if add is True:
         send_message(
@@ -264,8 +260,8 @@ def stop_filter(update, context):
 
 
 def reply_filter(update, context):
-    chat = update.effective_chat  # type: Optional[Chat]
-    message = update.effective_message  # type: Optional[Message]
+    chat = update.effective_chat  
+    message = update.effective_message  
 
     if not update.effective_user or update.effective_user.id == 777000:
         return
