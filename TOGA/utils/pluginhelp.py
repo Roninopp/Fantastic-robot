@@ -13,9 +13,9 @@ from pyrogram import Client
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Chat, Message, User
 
-from SUMI import OWNER_ID, SUPPORT_CHAT
-from SUMI import pgram
-from SUMI.utils.errors import split_limits
+from TOGA import OWNER_ID, SUPPORT_CHAT
+from TOGA import pgram
+from TOGA.utils.errors import split_limits
 
 
 def get_user(message: Message, text: str) -> [int, str, None]:
@@ -250,7 +250,6 @@ def get_text(message: Message) -> [None, str]:
         return None
 
 
-# Admin check
 
 admins: Dict[str, List[User]] = {}
 
@@ -328,7 +327,6 @@ def capture_err(func):
     return capture
 
 
-# Special credits to TheHamkerCat
 
 
 async def member_permissions(chat_id, user_id):
