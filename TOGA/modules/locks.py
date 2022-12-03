@@ -9,20 +9,20 @@ from telegram.utils.helpers import mention_html
 
 from alphabet_detector import AlphabetDetector
 
-import SUMI.modules.sql.locks_sql as sql
-from SUMI import dispatcher, DRAGONS, LOGGER
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.chat_status import (
+import TOGA.modules.sql.locks_sql as sql
+from TOGA import dispatcher, DRAGONS, LOGGER
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA.modules.helper_funcs.chat_status import (
     can_delete,
     is_user_admin,
     user_not_admin,
     is_bot_admin,
     user_admin,
 )
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.connection import connected
+from TOGA.modules.log_channel import loggable
+from TOGA.modules.connection import connected
 
-from SUMI.modules.helper_funcs.alternate import send_message, typing_action
+from TOGA.modules.helper_funcs.alternate import send_message, typing_action
 
 ad = AlphabetDetector()
 
@@ -545,9 +545,9 @@ def build_lock_message(chat_id):
     permslist.append("pin = `{}`".format(permissions.can_pin_messages))
 
     if locklist:
-        # Ordering lock list
+        
         locklist.sort()
-        # Building lock list string
+        
         for x in locklist:
             res += "\n ➢ {}".format(x)
     res += "\n\n*" + "These are the current chat permissions:" + "*"
@@ -560,7 +560,7 @@ def build_lock_message(chat_id):
 @user_admin
 @typing_action
 def list_locks(update, context):
-    chat = update.effective_chat  # type: Optional[Chat]
+    chat = update.effective_chat  
     user = update.effective_user
 
     # Connection check
@@ -650,10 +650,10 @@ __mod_name__ = "Locks"
 
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes)
 LOCK_HANDLER = CommandHandler(
-    "lock", lock, pass_args=True)  # , filters=Filters.group)
+    "lock", lock, pass_args=True) 
 UNLOCK_HANDLER = CommandHandler(
-    "unlock", unlock, pass_args=True)  # , filters=Filters.group)
-LOCKED_HANDLER = CommandHandler("locks", list_locks)  # , filters=Filters.group)
+    "unlock", unlock, pass_args=True)  
+LOCKED_HANDLER = CommandHandler("locks", list_locks)  
 
 dispatcher.add_handler(LOCK_HANDLER)
 dispatcher.add_handler(UNLOCK_HANDLER)
