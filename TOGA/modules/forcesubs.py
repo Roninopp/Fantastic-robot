@@ -10,10 +10,10 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboardMarkup
 
-from SUMI import DRAGONS as SUDO_USERS
-from SUMI import pbot
-from SUMI.modules.sql import forceSubscribe_sql as sql
-from SUMI.modules.language import gs
+from TOGA import DRAGONS as SUDO_USERS
+from TOGA import pbot
+from TOGA.modules.sql import forceSubscribe_sql as sql
+from TOGA.modules.language import gs
 
 logging.basicConfig(level=logging.INFO)
 
@@ -36,8 +36,6 @@ def _onUnMuteRequest(client, cb):
                     client.get_chat_member(channel, user_id)
                     client.unban_chat_member(chat_id, user_id)
                     cb.message.delete()
-                    # if cb.message.reply_to_message.from_user.id == user_id:
-                    # cb.message.delete()
                 except UserNotParticipant:
                     client.answer_callback_query(
                         cb.id,
@@ -110,7 +108,7 @@ def _check_member(client, message):
                     )
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "😕 **Eren is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
+                        "😕 **TOGA is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
                     )
 
             except ChatAdminRequired:
