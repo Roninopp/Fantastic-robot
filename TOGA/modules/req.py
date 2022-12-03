@@ -1,4 +1,4 @@
-from SUMI.modules.language import gs
+from TOGA.modules.language import gs
 
 
 def helps(chat):
