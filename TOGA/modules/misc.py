@@ -1,6 +1,6 @@
-from SUMI.modules.helper_funcs.chat_status import user_admin
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI import dispatcher
+from TOGA.modules.helper_funcs.chat_status import user_admin
+from TOGA.modules.disable import DisableAbleCommandHandler
+from TOGA import dispatcher
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import ParseMode, Update
