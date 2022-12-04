@@ -236,7 +236,7 @@ def new_member(update: Update, context: CallbackContext):
                 continue
             elif new_mem.id == bot.id:
                 update.effective_message.reply_photo(
-                SUMI_WELCOME, caption= "Hey {}, I'm {}!\n😩 Tʜᴀɴᴋ Yᴏᴜ Fᴏʀ Aᴅᴅɪɴɢ Mᴇ Tᴏ {}\n"
+                TOGA_WELCOME, caption= "Hey {}, I'm {}!\n😩 Tʜᴀɴᴋ Yᴏᴜ Fᴏʀ Aᴅᴅɪɴɢ Mᴇ Tᴏ {}\n"
                     "Cʜᴇᴄᴋ Oᴜᴛ Oᴜʀ Sᴜᴘᴘᴏʀᴛ & Aɴɪᴍᴇ Gᴄ Fʀᴏᴍ Tʜᴇ Bᴜᴛᴛᴏɴꜱ Bᴇʟᴏᴡ ! 👀".format(
                       user.first_name, context.bot.first_name, chat.title
                     ),
