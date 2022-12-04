@@ -1,6 +1,6 @@
 from enum import IntEnum, unique
 
-from SUMI.modules.helper_funcs.string_handling import \
+from TOGA.modules.helper_funcs.string_handling import \
     button_markdown_parser
 from telegram import Message
 
