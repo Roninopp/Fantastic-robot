@@ -21,9 +21,6 @@
 <a href="https://github.com/KAC-CHAN/TOGA/stargazers">
     <img src="https://img.shields.io/github/stars/KAC-CHAN/TOGA?label=Stars&style=social">
 </a><br>
-<a href="https://github.com/KAC-CHAN/TOGA/issues">
-    <img src="https://img.shields.io/github/issues/KAC-CHAN/TOGA?label=Issues&style=social&logo=github">
-</a><br>
 <a href="https://github.com/KAC-CHAN/TOGA/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/github/repo-size/KAC-CHAN/TOGA?label=Repo Size&style=social&logo=github">
 </a>
