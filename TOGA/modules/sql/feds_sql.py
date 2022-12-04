@@ -1,7 +1,7 @@
 import ast
 import threading
-from SUMI import dispatcher
-from SUMI.modules.sql import BASE, SESSION
+from TOGA import dispatcher
+from TOGA.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, Integer, BigInteger
 from telegram.error import BadRequest, Unauthorized
 
