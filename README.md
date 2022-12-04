@@ -67,7 +67,3 @@ The Easiest Way to Deploy This Bot is Via Heroku.
 Edit Config.py with your own Values
 
 Start with ```python3 -m TOGA```
-
-</details>    
-
-<details>
