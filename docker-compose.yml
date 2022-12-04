@@ -1,7 +1,7 @@
 version: '4'
 services:
   SUMI:
-    container_name: SUMI
+    container_name: TOGA
     build:
       context: .
       dockerfile: Dockerfile
