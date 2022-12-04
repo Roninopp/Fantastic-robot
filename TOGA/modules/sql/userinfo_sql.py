@@ -1,6 +1,6 @@
 import threading
 
-from SUMI.modules.sql import BASE, SESSION
+from TOGA.modules.sql import BASE, SESSION
 from sqlalchemy import Column, Integer, UnicodeText
 from sqlalchemy.sql.sqltypes import BigInteger
 
