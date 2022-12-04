@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from SUMI import LOGGER
-from SUMI.modules.users import get_user_id
+from TOGA import LOGGER
+from TOGA.modules.users import get_user_id
 from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 
