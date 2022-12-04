@@ -14,8 +14,6 @@
 <a href="https://Github.com/KAC-CHAN"> <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source" /> </a>
 <a href="https://GitHub.com/KAC-CHAN/TOGA"> <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen.svg" alt="Maintenance" /> </a><br>
 <a href="https://Github.com/KAC-CHAN/TOGA/blob/main/LICENSE"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /> </a>
-<a href="https://makeapullrequest.com"> <img src="https://img.shields.io/badge/PRs-Welcome-blue.svg?style=flat-round" alt="PRs" /> </a>
-</p>
 
 <p align="center">
 <a href="https://github.com/KAC-CHAN/TOGA/fork">
@@ -73,13 +71,3 @@ Start with ```python3 -m TOGA```
 </details>    
 
 <details>
-     <summary>Deploying On IDE VMs Like Repl.it</summary>
-       <br>
-         <p align="left">
-            <b> 
-
-            Refer to Deploying On Local Machine.
-
- </b>
-</p>
-</details>
