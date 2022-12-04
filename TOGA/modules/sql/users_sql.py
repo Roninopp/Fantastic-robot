@@ -1,7 +1,7 @@
 import threading
 
-from SUMI import dispatcher
-from SUMI.modules.sql import BASE, SESSION
+from TOGA import dispatcher
+from TOGA.modules.sql import BASE, SESSION
 from sqlalchemy import (
     Column,
     ForeignKey,
