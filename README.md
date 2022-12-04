@@ -10,7 +10,6 @@
 <a href="https://t.me/TogaSupport"> <img src="https://img.shields.io/badge/Support-Chat-blue?&logo=telegram" alt="Support Chat" /> </a>
 <a href="https://t.me/TogaUpdates"> <img src="https://img.shields.io/badge/Update-Channel-blue?&logo=telegram" alt="Update Channel" /> </a><br>
 <a href="https://t.me/Toga_Robot"> <img src="https://img.shields.io/badge/Toga_Robot-blue?&logo=telegram" alt="Toga on Telegram" /> </a><br>
-<a href="https://deepsource.io/gh/KAC-CHAN/TOGA/?ref=repository-badge"><img src="https://static.deepsource.io/deepsource-badge-light-mini.svg" alt="DeepSource"></a><br>
 <a href="https://Github.com/KAC-CHAN"> <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source" /> </a>
 <a href="https://GitHub.com/KAC-CHAN/TOGA"> <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen.svg" alt="Maintenance" /> </a><br>
 <a href="https://Github.com/KAC-CHAN/TOGA/blob/main/LICENSE"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /> </a>
