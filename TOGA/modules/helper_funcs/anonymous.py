@@ -6,8 +6,8 @@ from telegram.ext import CallbackContext
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 
-from SUMI import DEV_USERS, DRAGONS, dispatcher
-from SUMI.modules.helper_funcs.decorators import SUMIcallback
+from TOGA import DEV_USERS, DRAGONS, dispatcher
+from TOGA.modules.helper_funcs.decorators import SUMIcallback
 
 
 class AdminPerms(Enum):
