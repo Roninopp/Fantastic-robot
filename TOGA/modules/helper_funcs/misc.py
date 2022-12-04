@@ -3,7 +3,7 @@ from  uuid  import  uuid4
 from math import ceil
 from typing import Dict, List
 
-from SUMI import NO_LOAD
+from TOGA import NO_LOAD
 from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, InlineQueryResultArticle, InputTextMessageContent
 from telegram.error import TelegramError
 
