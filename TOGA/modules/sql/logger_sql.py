@@ -2,7 +2,7 @@ import threading
 
 from sqlalchemy import Column, String, Boolean
 
-from SUMI.modules.sql import BASE, SESSION
+from TOGA.modules.sql import BASE, SESSION
 
 class LoggerSettings(BASE):
     __tablename__ = "chat_log_settings"
