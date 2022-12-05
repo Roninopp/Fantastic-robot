@@ -57,6 +57,7 @@ The Easiest Way to Deploy This Bot is Via Heroku.
 ```console
     ~$ git clone https://github.com/KAC-CHAN/TOGA
     ~$ cd TOGA
+    ~$ pip3 install -U -r requirements.txt
     ~$ cp config.py
 ```
 
