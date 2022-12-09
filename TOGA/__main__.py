@@ -770,8 +770,8 @@ def main():
     settings_callback_handler = CallbackQueryHandler(
         settings_button, pattern=r"stngs_")
 
-    about_callback_handler = CallbackQueryHandler(about_callback_data, pattern=r"about_")
-    toga_callback_handler = CallbackQueryHandler(toga_callback_data, pattern=r"toga_")
+    about_callback_handler = CallbackQueryHandler(toga_callback_data, pattern=r"toga_")
+    toga_callback_handler = CallbackQueryHandler(about_callback_data, pattern=r"about_")
     repo_callback_handler = CallbackQueryHandler(repo_callback_data, pattern=r"repo_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate,
