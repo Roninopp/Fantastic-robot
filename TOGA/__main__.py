@@ -783,7 +783,7 @@ def main():
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(about_callback_handler)
     dispatcher.add_handler(repo_callback_handler)
-    dispatcher.add_handler(toga_callback_handler)
+    dispatcher.add_handler(sumi_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(donate_handler)
