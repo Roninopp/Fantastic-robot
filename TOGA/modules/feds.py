@@ -42,7 +42,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html, mention_markdown
-from SUMI.modules.language import gs
+from TOGA.modules.language import gs
 
 FBAN_ERRORS = {
     "User is an administrator of the chat",
