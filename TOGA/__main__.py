@@ -136,7 +136,7 @@ TOGA_N_IMG = (
 
 TOGA_VID = ""
 
-PM_PHOTO = ""
+PM_PHOTO = "https://telegra.ph/file/839ffd41ee4639bb06122.jpg"
 
 TOGA_DISPACHER_PIC = ""
 
