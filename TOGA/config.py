@@ -64,6 +64,8 @@ class Config(object):
     OWNER_NAME = "KACCHAN"
     BANCODES = ""
     REPOSITORY = "GitHub.com/kac-chan/toga"
+    HEROKU_APP_NAME = ""
+    HEROKU_APP_KEY = ""
 
 class Production(Config):
     LOGGER=True
