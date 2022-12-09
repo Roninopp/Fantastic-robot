@@ -200,6 +200,7 @@ else:
     ARQ_API_URL = Config.ARQ_API_URL
     ARQ_API_KEY = Config.ARQ_API_KEY
     COTB = Config.COTB
+    INFOPIC = Config.INFOPIC
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
