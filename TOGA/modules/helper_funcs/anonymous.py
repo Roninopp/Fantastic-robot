@@ -7,7 +7,7 @@ from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 
 from TOGA import DEV_USERS, DRAGONS, dispatcher
-from TOGA.modules.helper_funcs.decorators import SUMIcallback
+from TOGA.modules.helper_funcs.decorators import TOGAcallback
 
 
 class AdminPerms(Enum):
