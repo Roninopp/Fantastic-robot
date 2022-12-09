@@ -197,8 +197,8 @@ else:
     BOT_NAME = Config.BOT_NAME
     REPOSITORY = Config.REPOSITORY
     MONGO_DB_URI = Config.MONGO_DB_URI
-    HEROKU_APP_NAME = Config.HEROKU_APP_NAME
-    HEROKU_APP_KEY = Config.HEROKU_APP_KEY
+    ARQ_API_URL = Config.ARQ_API_URL
+    ARQ_API_KEY = Config.ARQ_API_KEY
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
@@ -226,6 +226,7 @@ aiohttpsession = ClientSession()
 
 #install arq
 print("[INFO]: INITIALIZING ARQ CLIENT")
+arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("TOGA", API_ID, API_HASH)
 pbot = Client("toga_robot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
