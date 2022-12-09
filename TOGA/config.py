@@ -26,7 +26,7 @@ class Config(object):
     #kacrmdi
     WOLVES=[]
     BOT_ID="" 
-    SQLALCHEMY_DATABASE_URI="" 
+    SQLALCHEMY_DATABASE_URI="postgres://egrrjbpz:cXiNSVqvu3p-mYLFa_BI6M2UZfca1Akl@lallah.db.elephantsql.com/egrrjbpz" 
     JOIN_LOGGER="" 
     API_HASH="" 
     INFOPIC=True
@@ -49,9 +49,9 @@ class Config(object):
     ERROR_LOGS="" 
     BOT_NAME="toga_robot"
     STRICT_GBAN=True
-    REDIS_URL=""
+    REDIS_URL="redis://betatoga:Betatoga123+@redis-15793.c241.us-east-1-4.ec2.cloud.redislabs.com:15793"
     UPDATE_CHANNEL="TogaUpdates"
-    MONGO_DB_URI=""
+    MONGO_DB_URI="mongodb+srv://betatoga:<password>@betatoga.rrk13ss.mongodb.net/?retryWrites=true&w=majority"
     BOT_USERNAME="Toga_Robot"
     REM_BG_API_KEY=""
     CASH_API_KEY=""
@@ -60,13 +60,10 @@ class Config(object):
     OPENWEATHERMAP_ID=""
     LOG_GROUP_ID=""
     STRICT_GMUTE=False
-    AFKVID=""
-    GROUP_ALIVE_PIC=""
     SPAMWATCH_API=""
     OWNER_NAME = ""
     BANCODES = ""
     REPOSITORY = "GitHub.com/kac-chan/toga"
-    RED7_TOKEN = ""
 
 class Production(Config):
     LOGGER=True
