@@ -25,7 +25,6 @@ from TOGA import (
     DEMONS,
     TIGERS,
     WOLVES,
-    COTB,
     dispatcher,
 )
 from TOGA.modules.helper_funcs.chat_status import (
