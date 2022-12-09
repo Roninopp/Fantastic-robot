@@ -66,6 +66,7 @@ class Config(object):
     REPOSITORY = "GitHub.com/kac-chan/toga"
     ARQ_API_KEY = ""
     ARQ_API_URL = ""
+    COTB = ""
 
 class Production(Config):
     LOGGER=True
