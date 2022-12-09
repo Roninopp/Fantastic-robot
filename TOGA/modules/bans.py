@@ -25,7 +25,6 @@ from TOGA import (
     DEMONS,
     TIGERS,
     WOLVES,
-    BANCODES,
     COTB,
     dispatcher,
 )
