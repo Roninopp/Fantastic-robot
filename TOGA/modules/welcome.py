@@ -1030,7 +1030,7 @@ For all command use / or !
 """
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("SUMI.modules." +
+    imported_module = importlib.import_module("TOGA.modules." +
                                               module_name)
     if hasattr(imported_module, "__help__") and imported_module.__help__:
         HELPABLE[imported_module.__mod_name__.lower()] = imported_module
