@@ -106,7 +106,7 @@ if is_module_loaded(FILENAME):
                 )
 
 
-    @SUMIcmd(command='logchannel')
+    @TOGAcmd(command='logchannel')
     @u_admin
     def logging(update: Update, context: CallbackContext):
         bot = context.bot
@@ -126,7 +126,7 @@ if is_module_loaded(FILENAME):
             message.reply_text("No log channel has been set for this group!")
 
 
-    @SUMIcmd(command='setlog')
+    @TOGAcmd(command='setlog')
     @user_admin(AdminPerms.CAN_CHANGE_INFO)
     def setlog(update: Update, context: CallbackContext):
         bot = context.bot
@@ -169,7 +169,7 @@ if is_module_loaded(FILENAME):
             )
 
 
-    @SUMIcmd(command='unsetlog')
+    @TOGAcmd(command='unsetlog')
     @user_admin(AdminPerms.CAN_CHANGE_INFO)
     def unsetlog(update: Update, context: CallbackContext):
         bot = context.bot
