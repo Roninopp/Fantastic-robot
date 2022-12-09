@@ -197,6 +197,8 @@ else:
     BOT_NAME = Config.BOT_NAME
     REPOSITORY = Config.REPOSITORY
     MONGO_DB_URI = Config.MONGO_DB_URI
+    HEROKU_APP_NAME = Config.HEROKU_APP_NAME
+    HEROKU_APP_KEY = Config.HEROKU_APP_KEY
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
