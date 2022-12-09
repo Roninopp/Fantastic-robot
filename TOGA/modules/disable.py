@@ -15,9 +15,9 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 
 if is_module_loaded(FILENAME):
 
-    from SUMI.modules.helper_funcs.chat_status import (
+    from TOGA.modules.helper_funcs.chat_status import (
         connection_status, is_user_admin, user_admin)
-    from SUMI.modules.sql import disable_sql as sql
+    from TOGA.modules.sql import disable_sql as sql
     from telegram.ext.dispatcher import run_async
 
     DISABLE_CMDS = []
