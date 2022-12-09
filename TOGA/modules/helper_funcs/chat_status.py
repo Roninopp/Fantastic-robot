@@ -468,6 +468,6 @@ def user_can_change(func):
 
     return info_changer
 
-from SUMI.modules import connection
+from TOGA.modules import connection
 
 connected = connection.connected
