@@ -9,7 +9,6 @@ import random
 import re
 import os
 from pyrogram import filters, Client
-from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
