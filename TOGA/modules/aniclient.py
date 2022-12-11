@@ -852,7 +852,7 @@ async def terminal(client: Client, message: Message, mdata: dict):
 ##########################################################################
 
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     ~filters.private & filters.command(
         ['disabled', f'disabled{BOT_NAME}'],
         prefixes=trg
@@ -862,7 +862,7 @@ async def terminal(client: Client, message: Message, mdata: dict):
 async def list_disabled_edit(client: Client, message: Message, mdata: dict):
     await list_disabled(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.user(OWNER_ID) & filters.command(
         ['dbcleanup', f'dbcleanup{BOT_NAME}'], prefixes=trg
     )
@@ -871,21 +871,21 @@ async def list_disabled_edit(client: Client, message: Message, mdata: dict):
 async def db_cleanup_edit(client: Client, message: Message, mdata: dict):
     await db_cleanup(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.command(['start', f'start{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def start_edit(client: Client, message: Message, mdata: dict):
     await start_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.command(['help', f'help{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def help_edit(client: Client, message: Message, mdata: dict):
     await help_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.command(
         [
             'connect',
@@ -900,7 +900,7 @@ async def help_edit(client: Client, message: Message, mdata: dict):
 async def connect_edit(client: Client, message: Message, mdata: dict):
     await connect_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.user(OWNER_ID) & filters.command(
         ['stats', f'stats{BOT_NAME}'], prefixes=trg
     )
@@ -909,14 +909,14 @@ async def connect_edit(client: Client, message: Message, mdata: dict):
 async def stats_edit(client: Client, message: Message, mdata: dict):
     await stats_(client, message)
 
-@pbot.on_edited_message(
+@pbot.on_edited_messages(
     filters.command(['ping', f'ping{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def pong_edit(client: Client, message: Message, mdata: dict):
     await pong_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.private & filters.command(
         ['feedback', f'feedback{BOT_NAME}'], prefixes=trg
     )
@@ -925,7 +925,7 @@ async def pong_edit(client: Client, message: Message, mdata: dict):
 async def feed_edit(client: Client, message: Message, mdata: dict):
     await feed_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.command(
         ['eval', f'eval{BOT_NAME}'], prefixes=trg
     ) & filters.user(OWNER_ID)
@@ -934,7 +934,7 @@ async def feed_edit(client: Client, message: Message, mdata: dict):
 async def eval_edit(client: Client, message: Message, mdata: dict):
     await eval_(client, message)
 
-@pbot.on_deleted_message(
+@pbot.on_deleted_messages(
     filters.user(OWNER_ID) & filters.command(
         ["term", f"term{BOT_NAME}"], prefixes=trg
     )
