@@ -820,5 +820,18 @@ def main():
 if __name__ == '__main__':
     LOGGER.info("Successfully Loaded Modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    pbot.start()
+    user = None
+if has_user:
+    from TOGA import user
+
+async def main():
+    await pbot.start()
+    if user is not None:
+        await user.start()
+    await idle()
+    await pbot.stop()
+    if user is not None:
+        await user.stop()
+    _close_db()
+    await session.close()
     main()
