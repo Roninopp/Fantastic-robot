@@ -25,17 +25,17 @@ from pyrogram.errors import (
     PeerIdInvalid as pi,
     FloodWait as fw
 )
-from .. import (
+from TOGA import (
     BOT_NAME,
     TRIGGERS as trg,
-    OWNER,
+    OWNER_ID,
     HELP_DICT,
     anibot,
     DOWN_PATH,
-    LOG_CHANNEL_ID
+    LOG_GROUP_ID
 )
-from ..utils.db import get_collection
-from ..utils.helper import (
+from TOGA.utils.db import get_collection
+from TOGA.utils.helper import (
     AUTH_USERS,
     clog,
     check_user,
@@ -51,7 +51,7 @@ from ..utils.helper import (
     USER_JSON,
     USER_WC
 )
-from ..utils.data_parser import (
+from TOGA.utils.data_parser import (
     get_all_genres,
     get_all_tags,
     get_top_animes,
@@ -109,7 +109,7 @@ from ..utils.data_parser import (
     VIEWER_QRY,
     RECOMMENDTIONS_QUERY,
 )
-from .anilist import auth_link_cmd, code_cmd, logout_cmd
+from TOGA.modules import auth_link_cmd, code_cmd, logout_cmd
 
 USERS = get_collection("USERS")
 GROUPS = get_collection("GROUPS")
@@ -153,7 +153,7 @@ CMD = [
 ]
 
 
-@anibot.on_message(
+@pbot.on_message(
     ~filters.private & filters.command(
         ['disable', f'disable{BOT_NAME}', 'enable', f'enable{BOT_NAME}'],
         prefixes=trg
@@ -167,7 +167,7 @@ async def en_dis__able_cmd(client: Client, message: Message, mdata: dict):
         user = mdata['from_user']['id']
     except KeyError:
         user = mdata['sender_chat']['id']
-    if user in OWNER or (
+    if user in OWNER_ID or (
         await anibot.get_chat_member(gid, user)
     ).status in [ADMINISTRATOR, CHAT_OWNER] or user==gid:
         if len(cmd)==1:
@@ -238,7 +238,7 @@ async def en_dis__able_cmd(client: Client, message: Message, mdata: dict):
             await message.reply_text("Hee, is that a command?!")
 
 
-@anibot.on_message(
+@pbot.on_message(
     ~filters.private & filters.command(
         ['disabled', f'disabled{BOT_NAME}'],
         prefixes=trg
@@ -257,8 +257,8 @@ f"""List of commands disabled in **{mdata['chat']['title']}**
         )
 
 
-@anibot.on_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_message(
+    filters.user(OWNER_ID) & filters.command(
         ['dbcleanup', f'dbcleanup{BOT_NAME}'], prefixes=trg
     )
 )
@@ -333,7 +333,7 @@ async def db_cleanup(client: Client, message: Message, mdata: dict):
     await x.edit_text(msg)
 
 
-@anibot.on_message(
+@pbot.on_message(
     filters.command(['start', f'start{BOT_NAME}'], prefixes=trg)
 )
 @control_user
@@ -348,7 +348,7 @@ async def start_(client: Client, message: Message, mdata: dict):
         return
     bot = await client.get_me()
     if gid==user:
-        if not (user in OWNER) and not (await USERS.find_one({"id": user})):
+        if not (user in OWNER_ID) and not (await USERS.find_one({"id": user})):
             try:
                 usertitle = mdata['from_user']['username']
             except KeyError:
@@ -435,12 +435,7 @@ ID: `{user}`""",
             gid,
             text=(
                 f"Kon'nichiwa!!!\n"
-                +f"I'm {bot.first_name} bot and I can help you get info on "
-                +f"Animes, Mangas, Characters, Airings, Schedules, Watch "
-                +f"Orders of Animes, etc."
-                +f"\n\nFor more info send /help in here."
-                +f"If you wish to use me in a group start me by "
-                +f"/start{BOT_NAME} command after adding me in the group.")
+                +f"")
         )
     else:
         if not await (GROUPS.find_one({"_id": gid})):
@@ -457,7 +452,7 @@ ID: `{user}`""",
         await client.send_message(gid, text="Bot seems online!!!")
 
 
-@anibot.on_message(
+@pbot.on_message(
     filters.command(['help', f'help{BOT_NAME}'], prefixes=trg)
 )
 @control_user
@@ -480,11 +475,8 @@ async def help_(client: Client, message: Message, mdata: dict):
     text='''This is a small guide on how to use me
     
 **Basic Commands:**
-Use /ping or !ping cmd to check if bot is online
-Use /start or !start cmd to start bot in group or pm
-Use /help or !help cmd to get interactive help on available bot cmds
-Use /feedback cmd to contact bot owner'''
-    if id_ in OWNER:
+Use /flex to flex yo nallapan'''
+    if id_ in OWNER_ID:
         await client.send_message(gid, text=text, reply_markup=buttons)
         await client.send_message(
             gid,
@@ -513,7 +505,7 @@ Apart from above shown cmds"""
             )
 
 
-@anibot.on_message(
+@pbot.on_message(
     filters.command(
         [
             'connect',
@@ -613,7 +605,7 @@ async def connect_(client: Client, message: Message, mdata: dict):
         )
 
 
-@anibot.on_callback_query(filters.regex(pattern=r"help_(.*)"))
+@pbot.on_callback_query(filters.regex(pattern=r"help_(.*)"))
 @check_user
 async def help_dicc_parser(client: Client, cq: CallbackQuery, cdata: dict):
     await cq.answer()
@@ -625,7 +617,7 @@ async def help_dicc_parser(client: Client, cq: CallbackQuery, cdata: dict):
     await cq.edit_message_text(text=text, reply_markup=btn)
 
 
-@anibot.on_callback_query(filters.regex(pattern=r"hlplist_(.*)"))
+@pbot.on_callback_query(filters.regex(pattern=r"hlplist_(.*)"))
 @check_user
 async def help_list_parser(client: Client, cq: CallbackQuery, cdata: dict):
     await cq.answer()
@@ -657,8 +649,8 @@ def help_btns(user):
     return InlineKeyboardMarkup(buttons)
 
 
-@anibot.on_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_message(
+    filters.user(OWNER_ID) & filters.command(
         ['stats', f'stats{BOT_NAME}'],
         prefixes=trg
     )
@@ -697,7 +689,7 @@ Stats:-
     )
 
 
-@anibot.on_message(filters.command(['ping', f'ping{BOT_NAME}'], prefixes=trg))
+@pbot.on_message(filters.command(['ping', f'ping{BOT_NAME}'], prefixes=trg))
 @control_user
 async def pong_(client: Client, message: Message, mdata: dict):
     find_gc = await DC.find_one({'_id': mdata['chat']['id']})
@@ -710,27 +702,26 @@ async def pong_(client: Client, message: Message, mdata: dict):
     await x.edit_text(f"__Pong!!!__\n`{pt} ms`")
 
 
-@anibot.on_message(
+@pbot.on_message(
     filters.private & filters.command(
         ['feedback', f'feedback{BOT_NAME}'], prefixes=trg
     )
 )
 @control_user
 async def feed_(client: Client, message: Message, mdata: dict):
-    owner = (await client.get_users(OWNER[0])).username
+    owner = (await client.get_users(OWNER_ID[0])).username
     await client.send_message(
         mdata['chat']['id'],
         f"For issues or queries please contact "
         +f"@{owner} or join @hanabi_support"
     )
 
-###### credits to @NotThatMF on tg since he gave me the code for it ######
 
 
-@anibot.on_message(
+@pbot.on_message(
     filters.command(
         ['eval', f'eval{BOT_NAME}'], prefixes=trg
-    ) & filters.user(OWNER)
+    ) & filters.user(OWNER_ID)
 )
 @control_user
 async def eval_(client: Client, message: Message, mdata: dict):
@@ -786,8 +777,8 @@ async def aexec(code, client, message):
     return await locals()["__aexec"](client, message)
 
 
-@anibot.on_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_message(
+    filters.user(OWNER_ID) & filters.command(
         ["term", f"term{BOT_NAME}"], prefixes=trg
     )
 )
@@ -865,7 +856,7 @@ async def terminal(client: Client, message: Message, mdata: dict):
 
 ##########################################################################
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     ~filters.private & filters.command(
         ['disable', f'disable{BOT_NAME}', 'enable', f'enable{BOT_NAME}'],
         prefixes=trg
@@ -876,7 +867,7 @@ async def en_dis__able_cmd_edit(client: Client, message: Message, mdata: dict):
     await en_dis__able_cmd(client, message)
 
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     ~filters.private & filters.command(
         ['disabled', f'disabled{BOT_NAME}'],
         prefixes=trg
@@ -886,8 +877,8 @@ async def en_dis__able_cmd_edit(client: Client, message: Message, mdata: dict):
 async def list_disabled_edit(client: Client, message: Message, mdata: dict):
     await list_disabled(client, message)
 
-@anibot.on_edited_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_edited_message(
+    filters.user(OWNER_ID) & filters.command(
         ['dbcleanup', f'dbcleanup{BOT_NAME}'], prefixes=trg
     )
 )
@@ -895,21 +886,21 @@ async def list_disabled_edit(client: Client, message: Message, mdata: dict):
 async def db_cleanup_edit(client: Client, message: Message, mdata: dict):
     await db_cleanup(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.command(['start', f'start{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def start_edit(client: Client, message: Message, mdata: dict):
     await start_(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.command(['help', f'help{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def help_edit(client: Client, message: Message, mdata: dict):
     await help_(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.command(
         [
             'connect',
@@ -924,8 +915,8 @@ async def help_edit(client: Client, message: Message, mdata: dict):
 async def connect_edit(client: Client, message: Message, mdata: dict):
     await connect_(client, message)
 
-@anibot.on_edited_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_edited_message(
+    filters.user(OWNER_ID) & filters.command(
         ['stats', f'stats{BOT_NAME}'], prefixes=trg
     )
 )
@@ -933,14 +924,14 @@ async def connect_edit(client: Client, message: Message, mdata: dict):
 async def stats_edit(client: Client, message: Message, mdata: dict):
     await stats_(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.command(['ping', f'ping{BOT_NAME}'], prefixes=trg)
 )
 @control_user
 async def pong_edit(client: Client, message: Message, mdata: dict):
     await pong_(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.private & filters.command(
         ['feedback', f'feedback{BOT_NAME}'], prefixes=trg
     )
@@ -949,17 +940,17 @@ async def pong_edit(client: Client, message: Message, mdata: dict):
 async def feed_edit(client: Client, message: Message, mdata: dict):
     await feed_(client, message)
 
-@anibot.on_edited_message(
+@pbot.on_edited_message(
     filters.command(
         ['eval', f'eval{BOT_NAME}'], prefixes=trg
-    ) & filters.user(OWNER)
+    ) & filters.user(OWNER_ID)
 )
 @control_user
 async def eval_edit(client: Client, message: Message, mdata: dict):
     await eval_(client, message)
 
-@anibot.on_edited_message(
-    filters.user(OWNER) & filters.command(
+@pbot.on_edited_message(
+    filters.user(OWNER_ID) & filters.command(
         ["term", f"term{BOT_NAME}"], prefixes=trg
     )
 )
