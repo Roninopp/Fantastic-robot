@@ -211,7 +211,7 @@ def check_user(func):
 
 
 async def media_to_image(
-    client: anibot, message: Message, x: Message, replied: Message
+    client: pbot, message: Message, x: Message, replied: Message
 ):
     if not (
         replied.photo
