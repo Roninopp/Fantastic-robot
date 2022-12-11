@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup as bs
 from datetime import datetime
 from natsort import natsorted
 from pyrogram import filters, enums, Client
-from pyrogram.enums import ChatMemberStatus
+from enums import ChatMemberStatus
 from pyrogram.types import (
     Message,
     InlineKeyboardButton,
