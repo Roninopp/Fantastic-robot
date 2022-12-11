@@ -2203,21 +2203,21 @@ async def anime_edit_cmd(client: pbot, message: Message):
 @pbot.on_deleted_messages(
     filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg)
 )
-async def manga_edit_cmd(client: anibot, message: Message):
+async def manga_edit_cmd(client: pbot, message: Message):
     await manga_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["character", f"character{BOT_NAME}"], prefixes=trg)
 )
-async def character_edit_cmd(client: anibot, message: Message):
+async def character_edit_cmd(client: pbot, message: Message):
     await character_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["anilist", f"anilist{BOT_NAME}"], prefixes=trg)
 )
-async def anilist_edit_cmd(client: anibot, message: Message):
+async def anilist_edit_cmd(client: pbot, message: Message):
     await anilist_cmd(client, message)
 
 
@@ -2227,28 +2227,28 @@ async def anilist_edit_cmd(client: anibot, message: Message):
         prefixes=trg
     )
 )
-async def flex_edit_cmd(client: anibot, message: Message):
+async def flex_edit_cmd(client: pbot, message: Message):
     await flex_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["top", f"top{BOT_NAME}"], prefixes=trg)
 )
-async def top_edit_cmd(client: anibot, message: Message):
+async def top_edit_cmd(client: pbot, message: Message):
     await top_tags_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["airing", f"airing{BOT_NAME}"], prefixes=trg)
 )
-async def airing_edit_cmd(client: anibot, message: Message):
+async def airing_edit_cmd(client: pbot, message: Message):
     await airing_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["auth", f"auth{BOT_NAME}"], prefixes=trg)
 )
-async def auth_edit_cmd(client: anibot, message: Message):
+async def auth_edit_cmd(client: pbot, message: Message):
     await auth_link_cmd(client, message)
 
 
@@ -2258,14 +2258,14 @@ async def auth_edit_cmd(client: anibot, message: Message):
         prefixes=trg
     )
 )
-async def settings_edit_cmd(client: anibot, message: Message):
+async def settings_edit_cmd(client: pbot, message: Message):
     await settings_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.private & filters.command("code", prefixes=trg)
 )
-async def code_edit_cmd(client: anibot, message: Message):
+async def code_edit_cmd(client: pbot, message: Message):
     await code_cmd(client, message)
 
 
@@ -2275,28 +2275,28 @@ async def code_edit_cmd(client: anibot, message: Message):
         prefixes=trg
     )
 )
-async def activity_edit_cmd(client: anibot, message: Message):
+async def activity_edit_cmd(client: pbot, message: Message):
     await activity_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["favourites", f"favourites{BOT_NAME}"], prefixes=trg)
 )
-async def favourites_edit_cmd(client: anibot, message: Message):
+async def favourites_edit_cmd(client: pbot, message: Message):
     await favourites_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["logout", f"logout{BOT_NAME}"], prefixes=trg)
 )
-async def logout_edit_cmd(client: anibot, message: Message):
+async def logout_edit_cmd(client: pbot, message: Message):
     await logout_cmd(client, message)
 
 
 @pbot.on_deleted_messages(
     filters.command(["browse", f"browse{BOT_NAME}"], prefixes=trg)
 )
-async def browse_edit_cmd(client: anibot, message: Message):
+async def browse_edit_cmd(client: pbot, message: Message):
     await browse_cmd(client, message)
 
 
@@ -2306,7 +2306,7 @@ async def browse_edit_cmd(client: anibot, message: Message):
         prefixes=trg
     )
 )
-async def tags_genres_edit_cmd(client: anibot, message: Message):
+async def tags_genres_edit_cmd(client: pbot, message: Message):
     await list_tags_genres_cmd(client, message)
 
 
