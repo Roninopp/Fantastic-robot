@@ -61,12 +61,16 @@ class Config(object):
     LOG_GROUP_ID="-1001745971242"
     STRICT_GMUTE=False
     SPAMWATCH_API=""
-    OWNER_NAME = "KACCHAN"
-    BANCODES = ""
-    REPOSITORY = "GitHub.com/kac-chan/toga"
-    ARQ_API_KEY = ""
-    ARQ_API_URL = ""
-    COTB = ""
+    OWNER_NAME="KACCHAN"
+    BANCODES=""
+    REPOSITORY="GitHub.com/kac-chan/toga"
+    ARQ_API_KEY=""
+    ARQ_API_URL=""
+    COTB=""
+    TRIGGERS="/ !"
+    ANILIST_CLIENT="10353"
+    ANILIST_SECRET="xyEQ6iUaFeHvm6chKCl9vy34dumA47gfd6JITmbU"
+    ANILIST_REDIRECT_URL="https://anilist.co/api/v2/oauth/pin"
 
 class Production(Config):
     LOGGER=True
