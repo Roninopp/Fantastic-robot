@@ -909,7 +909,7 @@ async def connect_edit(client: Client, message: Message, mdata: dict):
 async def stats_edit(client: Client, message: Message, mdata: dict):
     await stats_(client, message)
 
-@pbot.on_edited_messages(
+@pbot.on_deleted_messages(
     filters.command(['ping', f'ping{BOT_NAME}'], prefixes=trg)
 )
 @control_user
