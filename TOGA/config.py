@@ -51,7 +51,7 @@ class Config(object):
     STRICT_GBAN=True
     REDIS_URL="redis://betatoga:Betatoga123+@redis-15793.c241.us-east-1-4.ec2.cloud.redislabs.com:15793"
     UPDATE_CHANNEL="TogaUpdates"
-    MONGO_DB_URI="mongodb+srv://betatoga:<password>@betatoga.rrk13ss.mongodb.net/?retryWrites=true&w=majority"
+    MONGO_DB_URI="mongodb+srv://betatoga:Betatoga123+@betatoga.rrk13ss.mongodb.net/?retryWrites=true&w=majority"
     BOT_USERNAME="Toga_Robot"
     REM_BG_API_KEY=""
     CASH_API_KEY=""
