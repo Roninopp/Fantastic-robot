@@ -17,8 +17,8 @@ from pyrogram.types import (
     InlineKeyboardMarkup
 )
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from .. import OWNER, DOWN_PATH, anibot, LOG_CHANNEL_ID, has_user
-from ..utils.db import get_collection
+from TOGA import OWNER_ID, DOWN_PATH, pbot, LOG_GROUP_ID, has_user
+from TOGA.utils.db import get_collection
 
 if has_user:
     from .. import user
