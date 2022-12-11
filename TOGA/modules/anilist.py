@@ -18,7 +18,7 @@ from pyrogram.types import (
     Message
 )
 from pyrogram.errors import UserNotParticipant, WebpageCurlFailed, WebpageMediaEmpty
-from .. import (
+from TOGA import (
     ANILIST_CLIENT,
     ANILIST_REDIRECT_URL,
     ANILIST_SECRET,
