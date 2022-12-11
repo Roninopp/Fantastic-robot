@@ -72,9 +72,6 @@ CG = get_collection('CRUNCHY_GROUPS')
 SG = get_collection('SUBSPLEASE_GROUPS')
 HD = get_collection('HEADLINES_GROUPS')
 MHD = get_collection('MAL_HEADLINES_GROUPS')
-CHAT_OWNER = ChatMemberStatus.OWNER
-MEMBER = ChatMemberStatus.MEMBER
-ADMINISTRATOR = ChatMemberStatus.ADMINISTRATOR
 
 failed_pic = "https://telegra.ph/file/09733b49f3a9d5b147d21.png"
 no_pic = [
@@ -2196,35 +2193,35 @@ Selected text case in this group: {cs}"""
 
 ## For accepting commands from edited messages
 
-@anibot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["anime", f"anime{BOT_NAME}"], prefixes=trg)
 )
 async def anime_edit_cmd(client: anibot, message: Message):
     await anime_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["manga", f"manga{BOT_NAME}"], prefixes=trg)
 )
 async def manga_edit_cmd(client: anibot, message: Message):
     await manga_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["character", f"character{BOT_NAME}"], prefixes=trg)
 )
 async def character_edit_cmd(client: anibot, message: Message):
     await character_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["anilist", f"anilist{BOT_NAME}"], prefixes=trg)
 )
 async def anilist_edit_cmd(client: anibot, message: Message):
     await anilist_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(
         ["flex", f"flex{BOT_NAME}", "user", f"user{BOT_NAME}"],
         prefixes=trg
@@ -2234,28 +2231,28 @@ async def flex_edit_cmd(client: anibot, message: Message):
     await flex_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["top", f"top{BOT_NAME}"], prefixes=trg)
 )
 async def top_edit_cmd(client: anibot, message: Message):
     await top_tags_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["airing", f"airing{BOT_NAME}"], prefixes=trg)
 )
 async def airing_edit_cmd(client: anibot, message: Message):
     await airing_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["auth", f"auth{BOT_NAME}"], prefixes=trg)
 )
 async def auth_edit_cmd(client: anibot, message: Message):
     await auth_link_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     ~filters.private & filters.command(
         ["settings", f"settings{BOT_NAME}"],
         prefixes=trg
@@ -2265,14 +2262,14 @@ async def settings_edit_cmd(client: anibot, message: Message):
     await settings_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.private & filters.command("code", prefixes=trg)
 )
 async def code_edit_cmd(client: anibot, message: Message):
     await code_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(
         ["me", f"me{BOT_NAME}", "activity", f"activity{BOT_NAME}"],
         prefixes=trg
@@ -2282,28 +2279,28 @@ async def activity_edit_cmd(client: anibot, message: Message):
     await activity_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["favourites", f"favourites{BOT_NAME}"], prefixes=trg)
 )
 async def favourites_edit_cmd(client: anibot, message: Message):
     await favourites_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["logout", f"logout{BOT_NAME}"], prefixes=trg)
 )
 async def logout_edit_cmd(client: anibot, message: Message):
     await logout_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(["browse", f"browse{BOT_NAME}"], prefixes=trg)
 )
 async def browse_edit_cmd(client: anibot, message: Message):
     await browse_cmd(client, message)
 
 
-@pbot.on_edited_message(
+@pbot.on_deleted_messages(
     filters.command(
         ["gettags", f"gettags{BOT_NAME}", "getgenres", f"getgenres{BOT_NAME}"],
         prefixes=trg
