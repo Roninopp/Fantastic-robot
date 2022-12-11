@@ -10,7 +10,6 @@ import asyncio
 from typing import List
 from typing import Optional
 from pyrogram import Client, idle, filters
-from TOGA.utils.db import _close_db
 
 import TOGA.modules.sql.users_sql as sql
 from TOGA.modules.sudoers import bot_sys_stats as bss
@@ -819,18 +818,5 @@ def main():
 if __name__ == '__main__':
     LOGGER.info("Successfully Loaded Modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    user = None
-if has_user:
-    from TOGA import user
-
-async def main():
-    await pbot.start()
-    if user is not None:
-        await user.start()
-    await idle()
-    await pbot.stop()
-    if user is not None:
-        await user.stop()
-    _close_db()
-    await session.close()
+    pbot.start()
     main()
