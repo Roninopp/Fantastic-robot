@@ -123,7 +123,7 @@ if ENV:
     ANILIST_REDIRECT_URL = os.environ.get("ANILIST_REDIRECT_URL", "https://anilist.co/api/v2/oauth/pin")
 
     DOWN_PATH = "anibot/downloads/"
-HELP_DICT = dict()
+    HELP_DICT = dict()
 
 
     try:
@@ -212,6 +212,8 @@ else:
     ANILIST_CLIENT = Config.ANILIST_CLIENT
     ANILIST_SECRET = Config.ANILIST_SECRET
     ANILIST_REDIRECT_URL = Config.ANILIST_REDIRECT_URL
+    DOWN_PATH = "TOGA/modules/downloads/"
+    HELP_DICT = dict()
     
 
     try:
@@ -243,15 +245,27 @@ print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("TOGA", API_ID, API_HASH)
-pbot = Client("toga_robot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+pbot = Client("TOGA", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 mongo_client = MongoClient(MONGO_DB_URI)
 dispatcher = updater.dispatcher
+
+has_user: bool = False
+if os.environ.get('USER_SESSION'):
+    has_user: bool = True
+    user = Client(os.environ.get('USER_SESSION'), api_id=API_ID, api_hash=API_HASH)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
 WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
+
+HELP_DICT['Group'] = '''
+Group based commands:
+'''
+
+HELP_DICT["Additional"] = """Use /flex cmd to flex yo nalla pan
+"""
 
 
 # Load at end to ensure all prev variables have been set
