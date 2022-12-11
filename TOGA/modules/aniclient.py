@@ -851,7 +851,16 @@ async def terminal(client: Client, message: Message, mdata: dict):
 
 ##########################################################################
 
-
+@pbot.on_deleted_messages(
+    ~filters.private & filters.command(
+        ['disable', f'disable{BOT_NAME}', 'enable', f'enable{BOT_NAME}'],
+        prefixes=trg
+    )
+)
+@control_user
+async def en_dis__able_cmd_edit(client: Client, message: Message, mdata: dict):
+    await en_dis__able_cmd(client, message)
+    
 @pbot.on_deleted_messages(
     ~filters.private & filters.command(
         ['disabled', f'disabled{BOT_NAME}'],
