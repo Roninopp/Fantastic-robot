@@ -168,12 +168,6 @@ else:
     except ValueError:
         raise Exception(
             "Your tiger users list does not contain valid integers.")
-        
-    try:
-        TRIGGERS = set(int(x) for x in Config.TRIGGERS or [])
-    except ValueError:
-        raise Exception(
-            "Your TRIGGERS users list does not contain valid integers.")
 
     EVENT_LOGS = Config.EVENT_LOGS
     WEBHOOK = Config.WEBHOOK
@@ -220,6 +214,7 @@ else:
     ANILIST_REDIRECT_URL = Config.ANILIST_REDIRECT_URL
     DOWN_PATH = "TOGA/modules/downloads/"
     HELP_DICT = dict()
+    TRIGGERS = Config.TRIGGERS
     
 
     try:
