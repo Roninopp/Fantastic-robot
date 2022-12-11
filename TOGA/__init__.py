@@ -168,6 +168,12 @@ else:
     except ValueError:
         raise Exception(
             "Your tiger users list does not contain valid integers.")
+        
+    try:
+        TRIGGERS = set(int(x) for x in Config.TRIGGERS or [])
+    except ValueError:
+        raise Exception(
+            "Your TRIGGERS users list does not contain valid integers.")
 
     EVENT_LOGS = Config.EVENT_LOGS
     WEBHOOK = Config.WEBHOOK
