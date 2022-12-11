@@ -119,9 +119,6 @@ HD_GRPS = get_collection('HEADLINES_GROUPS')
 MAL_HD_GRPS = get_collection('MAL_HEADLINES_GROUPS')
 SP_GRPS = get_collection('SUBSPLEASE_GROUPS')
 CC = get_collection('CONNECTED_CHANNELS')
-CHAT_OWNER = ChatMemberStatus.OWNER
-MEMBER = ChatMemberStatus.MEMBER
-ADMINISTRATOR = ChatMemberStatus.ADMINISTRATOR
 
 CMD = [
     'anime',
