@@ -236,6 +236,7 @@ else:
 
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+session = ClientSession()
 
 #install aiohttp session
 print("[INFO]: INITIALZING AIOHTTP SESSION")
