@@ -12,7 +12,7 @@ from .helper import (
     day_,
     season_
 )
-from .. import BOT_NAME
+from TOGA import BOT_NAME
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
 
