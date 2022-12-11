@@ -10,7 +10,7 @@ import asyncio
 from typing import List
 from typing import Optional
 from pyrogram import Client, idle, filters
-from TOGA import has_user, session
+from TOGA import pbot, has_user, session
 from TOGA.utils.db import _close_db
 
 import TOGA.modules.sql.users_sql as sql
