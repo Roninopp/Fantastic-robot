@@ -2196,7 +2196,7 @@ Selected text case in this group: {cs}"""
 @pbot.on_deleted_messages(
     filters.command(["anime", f"anime{BOT_NAME}"], prefixes=trg)
 )
-async def anime_edit_cmd(client: anibot, message: Message):
+async def anime_edit_cmd(client: pbot, message: Message):
     await anime_cmd(client, message)
 
 
