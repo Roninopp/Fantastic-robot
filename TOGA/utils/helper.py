@@ -9,7 +9,6 @@ from datetime import datetime
 from os.path import basename
 from typing import Tuple, Optional
 from uuid import uuid4
-from pyrogram.enums import ChatType
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import (
     InlineKeyboardButton,
