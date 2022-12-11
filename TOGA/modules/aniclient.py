@@ -29,7 +29,7 @@ from TOGA import (
     TRIGGERS as trg,
     OWNER_ID,
     HELP_DICT,
-    anibot,
+    pbot,
     DOWN_PATH,
     LOG_GROUP_ID
 )
