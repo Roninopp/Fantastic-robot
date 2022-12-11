@@ -117,6 +117,19 @@ if ENV:
     OWNER_NAME = os.environ.get("OWNER_NAME", "")
     COTB = ""
     UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
+    TRIGGERS = os.environ.get("TRIGGERS", "/ !").split()
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "5614075230:AAHwMlH22eJH8BgVDyHTI0bPWODMRu727pI")
+    BOT_NAME = os.environ.get("BOT_NAME", "AnicadeBOt")
+    DB_URL = os.environ.get("DATABASE_URL", "mongodb+srv://kacbusiness:hrituzee123@kacbusiness.dahr62x.mongodb.net/?retryWrites=true&w=majority")
+    ANILIST_CLIENT = os.environ.get("ANILIST_CLIENT", "10353")
+    ANILIST_SECRET = os.environ.get("ANILIST_SECRET", "xyEQ6iUaFeHvm6chKCl9vy34dumA47gfd6JITmbU")
+    ANILIST_REDIRECT_URL = os.environ.get("ANILIST_REDIRECT_URL", "https://anilist.co/api/v2/oauth/pin")
+    LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL_ID", "-1001564716302"))
+    OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "5163444566").split())))  ## sudos can be included
+
+    DOWN_PATH = "anibot/downloads/"
+HELP_DICT = dict()
+
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())
