@@ -22,7 +22,6 @@ from TOGA import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
 from TOGA.modules import ALL_MODULES
 from TOGA.modules.helper_funcs.chat_status import is_user_admin
 from TOGA.modules.helper_funcs.misc import paginate_modules
-import TOGA.helpers.strings as st
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
 from telegram.error import (BadRequest, ChatMigrated, NetworkError,
@@ -773,7 +772,7 @@ def main():
         settings_button, pattern=r"stngs_")
 
     about_callback_handler = CallbackQueryHandler(about_callback_data, pattern=r"about_")
-    toga_callback_handler = CallbackQueryHandler(toga_callback_data, pattern=r"toga_")
+    sumi_callback_handler = CallbackQueryHandler(sumi_callback_data, pattern=r"toga_")
     repo_callback_handler = CallbackQueryHandler(repo_callback_data, pattern=r"repo_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate,
@@ -785,7 +784,7 @@ def main():
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(about_callback_handler)
     dispatcher.add_handler(repo_callback_handler)
-    dispatcher.add_handler(toga_callback_handler)
+    dispatcher.add_handler(sumi_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(donate_handler)
