@@ -67,10 +67,9 @@ class Config(object):
     ARQ_API_KEY=""
     ARQ_API_URL=""
     COTB=""
-    TRIGGERS="/ !"
-    ANILIST_CLIENT="10353"
-    ANILIST_SECRET="xyEQ6iUaFeHvm6chKCl9vy34dumA47gfd6JITmbU"
-    ANILIST_REDIRECT_URL="https://anilist.co/api/v2/oauth/pin"
+    SPT_CLIENT_SECRET="914a0ed5a4b34f55bdd4144e21410faf"
+    SPT_CLIENT_ID="50d55b24e2454b25800ee7a4de207fc3"
+    APP_URL=""
 
 class Production(Config):
     LOGGER=True
