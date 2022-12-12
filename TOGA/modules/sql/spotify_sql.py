@@ -1,7 +1,7 @@
 import threading
 
 from sqlalchemy import Column, Integer, UnicodeText
-from TOGA.helpers.database import SESSION, BASE
+from TOGA.modules.sql import SESSION, BASE
 
 
 class SpotifyCreds(BASE):
