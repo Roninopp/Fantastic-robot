@@ -67,9 +67,6 @@ class Config(object):
     ARQ_API_KEY=""
     ARQ_API_URL=""
     COTB=""
-    SPT_CLIENT_SECRET="914a0ed5a4b34f55bdd4144e21410faf"
-    SPT_CLIENT_ID="50d55b24e2454b25800ee7a4de207fc3"
-    APP_URL="acutebot/webserver"
 
 class Production(Config):
     LOGGER=True
