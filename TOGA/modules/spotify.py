@@ -2,6 +2,7 @@ from telegram.ext import CommandHandler
 from telegram.ext.dispatcher import run_async
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
+from TOGA dispatcher
 from TOGA.helpers.spthelper import SpotifyClient, get_spotify_data
 import TOGA.helpers.strings as st
 
@@ -50,4 +51,4 @@ def now_playing(update, context):
     )
 
 
-dp.add_handler(CommandHandler("nowplaying", now_playing))
+dispatcher.add_handler(CommandHandler("nowplaying", now_playing))
