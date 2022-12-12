@@ -13,7 +13,7 @@ from typing import Optional
 from pyrogram import Client, idle, filters
 
 import TOGA.modules.sql.users_sql as sql
-from TOGA.helpers.spthelper import urls
+from TOGA.helpers.spthelper import url
 from TOGA.modules.sudoers import bot_sys_stats as bss
 
 from TOGA import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
