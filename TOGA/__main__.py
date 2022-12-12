@@ -1,6 +1,6 @@
+import tornado.web
 import time
 import requests
-import tornado.web
 import importlib
 from sys import argv
 import re
