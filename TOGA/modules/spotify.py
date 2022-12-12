@@ -2,7 +2,6 @@ from telegram.ext import CommandHandler
 from telegram.ext.dispatcher import run_async
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
-import typing
 from TOGA.helpers.spthelper import SpotifyClient, get_spotify_data
 import TOGA.helpers.strings as st
 
@@ -23,7 +22,6 @@ def authorize(update, user_id):
     else:
         msg.reply_text("Something went wrong! Please report")
 
-@typing
 def now_playing(update, context):
     user = update.effective_user
     chat = update.effective_chat
