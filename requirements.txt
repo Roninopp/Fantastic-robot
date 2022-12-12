@@ -109,3 +109,4 @@ natsort
 apscheduler
 lxml
 html5lib
+pyfy
