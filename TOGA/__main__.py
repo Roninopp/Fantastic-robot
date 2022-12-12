@@ -13,7 +13,6 @@ from typing import Optional
 from pyrogram import Client, idle, filters
 
 import TOGA.modules.sql.users_sql as sql
-from TOGA.helpers.spthelper import url
 from TOGA.modules.sudoers import bot_sys_stats as bss
 
 from TOGA import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
@@ -23,6 +22,8 @@ from TOGA import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
 from TOGA.modules import ALL_MODULES
 from TOGA.modules.helper_funcs.chat_status import is_user_admin
 from TOGA.modules.helper_funcs.misc import paginate_modules
+from TOGA.helpers.spthelper import urls
+import TOGA.helpers.strings as st
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
 from telegram.error import (BadRequest, ChatMigrated, NetworkError,
