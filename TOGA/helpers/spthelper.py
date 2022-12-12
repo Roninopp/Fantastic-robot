@@ -3,7 +3,7 @@ from pyfy.excs import ApiError
 from dataclasses import dataclass
 
 from TOGA import TOKEN, SPT_CLIENT_SECRET, SPT_CLIENT_ID, APP_URL
-from TOGA.helpers.database.spotify_sql import get_sptuser
+from TOGA.modules.sql.spotify_sql import get_sptuser
 
 import typing
 
