@@ -28,6 +28,8 @@ LOGGER.info("CREATED BY: KAC-CHAN (t.me/PervertSenpai)")
 
 log = logging.getLogger('[Your Bot Is DEPLOYING]')
 
+__version__ = "1.1.2-rev04"
+
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGGER.error(
@@ -117,13 +119,9 @@ if ENV:
     OWNER_NAME = os.environ.get("OWNER_NAME", "")
     COTB = ""
     UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
-    TRIGGERS = os.environ.get("TRIGGERS", "/ !").split()
-    ANILIST_CLIENT = os.environ.get("ANILIST_CLIENT", "10353")
-    ANILIST_SECRET = os.environ.get("ANILIST_SECRET", "xyEQ6iUaFeHvm6chKCl9vy34dumA47gfd6JITmbU")
-    ANILIST_REDIRECT_URL = os.environ.get("ANILIST_REDIRECT_URL", "https://anilist.co/api/v2/oauth/pin")
-
-    DOWN_PATH = "anibot/downloads/"
-    HELP_DICT = dict()
+    SPT_CLIENT_SECRET = os.environ.get("SPT_CLIENT_SECRET")
+    SPT_CLIENT_ID = os.environ.get("SPT_CLIENT_ID")
+    APP_URL = os.environ.get("APP_URL")
 
 
     try:
@@ -209,12 +207,9 @@ else:
     ARQ_API_KEY = Config.ARQ_API_KEY
     COTB = Config.COTB
     INFOPIC = Config.INFOPIC
-    ANILIST_CLIENT = Config.ANILIST_CLIENT
-    ANILIST_SECRET = Config.ANILIST_SECRET
-    ANILIST_REDIRECT_URL = Config.ANILIST_REDIRECT_URL
-    DOWN_PATH = "TOGA/modules/downloads/"
-    HELP_DICT = dict()
-    TRIGGERS = Config.TRIGGERS
+    SPT_CLIENT_SECRET = Config.SPT_CLIENT_SECRET
+    SPT_CLIENT_ID = Config.SPT_CLIENT_ID
+    APP_URL = Config.APP_URL
     
 
     try:
