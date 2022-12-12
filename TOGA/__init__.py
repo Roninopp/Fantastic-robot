@@ -257,13 +257,6 @@ WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 
-HELP_DICT['Group'] = '''
-Group based commands:
-'''
-
-HELP_DICT["Additional"] = """Use /flex cmd to flex yo nalla pan
-"""
-
 
 # Load at end to ensure all prev variables have been set
 from TOGA.modules.helper_funcs.handlers import (CustomCommandHandler,
