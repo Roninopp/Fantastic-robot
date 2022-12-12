@@ -28,8 +28,6 @@ LOGGER.info("CREATED BY: KAC-CHAN (t.me/PervertSenpai)")
 
 log = logging.getLogger('[Your Bot Is DEPLOYING]')
 
-__version__ = "1.1.2-rev04"
-
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGGER.error(
@@ -118,8 +116,6 @@ if ENV:
     REDIS_URL = os.environ.get("REDIS_URL", "")
     OWNER_NAME = os.environ.get("OWNER_NAME", "")
     COTB = ""
-    UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
-
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())
@@ -235,7 +231,7 @@ print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("TOGA", API_ID, API_HASH)
-pbot = Client("TOGA", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+pbot = Client("toga_robot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 mongo_client = MongoClient(MONGO_DB_URI)
 dispatcher = updater.dispatcher
 
