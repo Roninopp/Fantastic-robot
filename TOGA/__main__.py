@@ -1,9 +1,8 @@
-import tornado.web
 import time
 import requests
 import importlib
-from threading import Thread
 from sys import argv
+from threading import Thread
 import re
 import os
 import random
@@ -403,7 +402,7 @@ def about_callback_data(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Back", callback_data="toga_")
+                    InlineKeyboardButton(text="Back", callback_data="sumi_")
                  ],
                 ]
             ),
@@ -443,7 +442,7 @@ def repo_callback_data(update, context):
                     InlineKeyboardButton(text="Developer", url="t.me/PervertSenpai"),
                  ],
                  [
-                    InlineKeyboardButton(text="Back", callback_data="toga_")
+                    InlineKeyboardButton(text="Back", callback_data="sumi_")
                  ],
                 ]
             ),
@@ -774,7 +773,7 @@ def main():
         settings_button, pattern=r"stngs_")
 
     about_callback_handler = CallbackQueryHandler(about_callback_data, pattern=r"about_")
-    sumi_callback_handler = CallbackQueryHandler(sumi_callback_data, pattern=r"toga_")
+    toga_callback_handler = CallbackQueryHandler(toga_callback_data, pattern=r"toga_")
     repo_callback_handler = CallbackQueryHandler(repo_callback_data, pattern=r"repo_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate,
@@ -786,7 +785,7 @@ def main():
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(about_callback_handler)
     dispatcher.add_handler(repo_callback_handler)
-    dispatcher.add_handler(sumi_callback_handler)
+    dispatcher.add_handler(toga_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(donate_handler)
