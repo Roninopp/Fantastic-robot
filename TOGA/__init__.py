@@ -119,9 +119,6 @@ if ENV:
     OWNER_NAME = os.environ.get("OWNER_NAME", "")
     COTB = ""
     UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
-    SPT_CLIENT_SECRET = os.environ.get("SPT_CLIENT_SECRET")
-    SPT_CLIENT_ID = os.environ.get("SPT_CLIENT_ID")
-    APP_URL = os.environ.get("APP_URL")
 
 
     try:
@@ -207,9 +204,6 @@ else:
     ARQ_API_KEY = Config.ARQ_API_KEY
     COTB = Config.COTB
     INFOPIC = Config.INFOPIC
-    SPT_CLIENT_SECRET = Config.SPT_CLIENT_SECRET
-    SPT_CLIENT_ID = Config.SPT_CLIENT_ID
-    APP_URL = Config.APP_URL
     
 
     try:
@@ -231,7 +225,6 @@ else:
 
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
-session = ClientSession()
 
 #install aiohttp session
 print("[INFO]: INITIALZING AIOHTTP SESSION")
@@ -245,11 +238,6 @@ telethn = TelegramClient("TOGA", API_ID, API_HASH)
 pbot = Client("TOGA", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 mongo_client = MongoClient(MONGO_DB_URI)
 dispatcher = updater.dispatcher
-
-has_user: bool = False
-if os.environ.get('USER_SESSION'):
-    has_user: bool = True
-    user = Client(os.environ.get('USER_SESSION'), api_id=API_ID, api_hash=API_HASH)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
