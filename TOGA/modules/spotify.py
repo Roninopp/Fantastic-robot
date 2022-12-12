@@ -21,7 +21,7 @@ def authorize(update, user_id):
         )
 
     else:
-        msg.reply_text("Something went wrong! Please report to @starryboi")
+        msg.reply_text("Something went wrong! Please report")
 
 @typing
 def now_playing(update, context):
