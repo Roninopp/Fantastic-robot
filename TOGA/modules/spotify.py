@@ -23,8 +23,6 @@ def authorize(update, user_id):
     else:
         msg.reply_text("Something went wrong! Please report to @starryboi")
 
-
-@run_async
 @typing
 def now_playing(update, context):
     user = update.effective_user
