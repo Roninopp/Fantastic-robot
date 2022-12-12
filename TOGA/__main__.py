@@ -792,6 +792,10 @@ def main():
 
     dispatcher.add_error_handler(error_callback)
 
+    app = tornado.web.Application(urls)
+    app.listen(8888)
+    
+    #start
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.1", port=PORT, url_path=TOKEN)
@@ -808,6 +812,7 @@ def main():
                            'chat_member', 'chat_join_request', 'channel_post', 'edited_channel_post', 'inline_query']
         updater.start_polling(
                 timeout=15, read_latency=4, allowed_updates=allowed_updates, drop_pending_updates=True)
+        tornado.ioloop.IOLoop.current().start()
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
