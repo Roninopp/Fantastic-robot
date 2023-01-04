@@ -15,14 +15,14 @@
 <a href="https://Github.com/spryslade/toga/blob/main/LICENSE"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /> </a>
 
 <p align="center">
-<a href="https://github.com/KAC-CHAN/TOGA/fork">
-    <img src="https://img.shields.io/github/forks/KAC-CHAN/TOGA?label=Forks&style=social">
+<a href="https://github.com/spryslade/toga/fork">
+    <img src="https://img.shields.io/github/forks/spryslade/toga?label=Forks&style=social">
 </a><br>
-<a href="https://github.com/KAC-CHAN/TOGA/stargazers">
-    <img src="https://img.shields.io/github/stars/KAC-CHAN/TOGA?label=Stars&style=social">
+<a href="https://github.com/spryslade/toga/stargazers">
+    <img src="https://img.shields.io/github/stars/spryslade/toga?label=Stars&style=social">
 </a><br>
-<a href="https://github.com/KAC-CHAN/TOGA/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/github/repo-size/KAC-CHAN/TOGA?label=Repo Size&style=social&logo=github">
+<a href="https://github.com/spryslade/toga/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/github/repo-size/spryslade/toga?label=Repo Size&style=social&logo=github">
 </a>
 </p>
 
