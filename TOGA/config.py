@@ -51,7 +51,7 @@ class Config(object):
     STRICT_GBAN=True
     REDIS_URL="redis://OKI:Izaya123@+@redis-18548.c277.us-east-1-3.ec2.cloud.redislabs.com:18548/OKI-free-db"
     UPDATE_CHANNEL="TogaUpdates"
-    MONGO_DB_URI="mongodb://haitham:haitham123@ac-qyf5dda-shard-00-00.fwvg6ry.mongodb.net:27017,ac-qyf5dda-shard-00-01.fwvg6ry.mongodb.net:27017,ac-qyf5dda-shard-00-02.fwvg6ry.mongodb.net:27017/?ssl=true&replicaSet=atlas-vm6xg9-shard-0&authSource=admin&retryWrites=true&w=majority"
+    MONGO_DB_URI="mongodb+srv://akari:akari123@cluster0.ewqoq9w.mongodb.net/?retryWrites=true&w=majority"
     BOT_USERNAME="AstorTestbot"
     REM_BG_API_KEY=""
     CASH_API_KEY=""
