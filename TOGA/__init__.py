@@ -116,6 +116,8 @@ if ENV:
     REDIS_URL = os.environ.get("REDIS_URL", "")
     OWNER_NAME = os.environ.get("OWNER_NAME", "")
     COTB = ""
+    ARQ_API_URL = os.environ.get("ARQ_API_URL", "") 
+    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "") 
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get('BL_CHATS', "").split())
