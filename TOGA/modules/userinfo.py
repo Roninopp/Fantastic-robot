@@ -34,7 +34,6 @@ from TOGA import (
     sw,
     StartTime,
     SUPPORT_CHAT,
-    UPDATE_CHANNEL,
 )
 from TOGA.__main__ import STATS, TOKEN, USER_INFO
 from TOGA.modules.sql import SESSION
